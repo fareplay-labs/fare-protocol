@@ -13,13 +13,60 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #fff;
-  text-decoration: inherit;
+@font-face {
+  font-family: "PPSupplyMono";
+  src: url("/PPSupplyMono-Ultralight.ttf") format("truetype");
+  font-weight: 200;
+  font-style: normal;
 }
-a:hover {
-  color: #aaa;
+
+@font-face {
+  font-family: "PPSupplyMono";
+  src: url("/PPSupplyMono-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "PPSupplyMono";
+  src: url("/PPSupplyMono-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "PPSupplyMono";
+  src: url("/PPSupplyMono-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+/* Custom font-face for PPSupplyMono */
+@font-face {
+  font-family: "PPSupplyMono";
+  src: url("./assets/font/ppsupplymono woff2/PPSupplyMono-Regular.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "PPSupplyMono";
+  src: url("/PPSupplyMono-Semibold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "PPSupplyMono";
+  src: url("/PPSupplyMono-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+html,
+body {
+  font-family: "PPSupplyMono", monospace;
 }
 
 body {
@@ -31,24 +78,34 @@ body {
   background: hsla(0, 0%, 9.41%, 1);
 }
 
+a {
+  font-weight: 500;
+  color: #fff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #aaa;
+}
+
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
 
 button {
-  border-radius: 8px;
   border: 1px solid transparent;
+  background-color: transparent;
+
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+
   cursor: pointer;
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: transparent;
 }
 button:focus,
 button:focus-visible {

@@ -1,10 +1,14 @@
+import "./styles.css";
+import DiscordIcon from "../../assets/svgs/Discord.svg";
+import TwitterIcon from "../../assets/svgs/Twitter.svg";
+
 export const HomePage = () => {
   return (
     <div className="page-wrapper">
       <h1>Home Page</h1>
       <p>DEPLOY PERMISSIONLESS + TRUSTLESS ON-CHAIN CASINOS</p>
       <p>
-        <span>FARE TOKEN</span>
+        <span className="teal-text">FARE TOKEN</span>
       </p>
       <p>
         FARE is a token that users will be able to gamble with via the FAREVault
@@ -15,7 +19,8 @@ export const HomePage = () => {
         casinos).
       </p>
       <p>
-        <span>BURN</span> &gt; <span>MINT</span>
+        <span className="red-text">BURN</span> &gt;{" "}
+        <span className="green-text">MINT</span>
       </p>
       <p>
         Because players lose more than they win, there is more burning than
@@ -26,13 +31,17 @@ export const HomePage = () => {
         learn more.
       </p>
       <p>Experience the first application on testnet, Fareplay:</p>
-      <button>LAUNCH</button>
-      <button>
-        <img src="/path/to/image" alt="Fareplay Logo" />
-      </button>
-      <button>
-        <img src="/path/to/image" alt="Fareplay Logo" />
-      </button>
+      <div>
+        <button className="btn--launch">launch</button>
+        <div>
+          <button>
+            <img src={DiscordIcon} alt="Discord Logo" width={40} />
+          </button>
+          <button>
+            <img src={TwitterIcon} alt="Twitter Logo" width={40} />
+          </button>
+        </div>
+      </div>
       <div> carousel section</div>
     </div>
   );

@@ -3,6 +3,11 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+
+  --fare-blue: #2ecdc9;
+  --fare-red: #F05D80;
+  --fare-green: #90ED7D;  
+
 }
 
 .section-wrapper {
