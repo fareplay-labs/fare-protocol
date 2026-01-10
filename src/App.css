@@ -1,0 +1,17 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.section-wrapper {
+  position: relative;
+  height: 100%;
+  padding-bottom: 24px;
+}
+
+.page-wrapper {
+  max-width: 940px;
+  padding-block: 10vh;
+}

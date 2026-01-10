@@ -1,0 +1,37 @@
+.navbar-wrapper {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  display: grid;
+  grid-template-columns: 1.5fr 2fr 1.5fr;
+}
+
+ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-inline: 12px;
+  padding-left: 0;
+  font-size: 13px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+ul li {
+  list-style-type: none;
+}
+
+.navbar-wrapper::before {
+  content: " ";
+  border-bottom: 1px solid white;
+  height: 50%;
+  margin-inline: 36px;
+}
+
+.navbar-wrapper::after {
+  content: " ";
+  border-bottom: 1px solid white;
+  height: 50%;
+  margin-inline: 36px;
+
+}
