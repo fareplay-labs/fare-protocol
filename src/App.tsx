@@ -4,8 +4,7 @@ import { RouteList } from "./routes";
 
 function App() {
   return (
-    <div className="section-wrapper"
-    >
+    <div className="app-wrapper">
       <Navbar />
       <RouteList />
     </div>

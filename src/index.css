@@ -15,53 +15,69 @@
 
 @font-face {
   font-family: "PPSupplyMono";
-  src: url("/PPSupplyMono-Ultralight.ttf") format("truetype");
+  src: url("./assets/font/ppsupplymono woff2/PPSupplyMono-Ultralight.woff2")
+      format("woff2"),
+    url("./assets/font/ppsupplymono woff2/PPSupplyMono-Ultralight.ttf")
+      format("truetype");
   font-weight: 200;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "PPSupplyMono";
-  src: url("/PPSupplyMono-Light.ttf") format("truetype");
+  src: url("./assets/font/ppsupplymono woff2/PPSupplyMono-Light.woff2")
+      format("woff2"),
+    url("./assets/font/ppsupplymono woff2/PPSupplyMono-Light.ttf")
+      format("truetype");
   font-weight: 300;
   font-style: normal;
+  font-display: swap;
 }
+
+/* Removed duplicate TTF Regular (400) entry, replaced by WOFF2 below */
 
 @font-face {
   font-family: "PPSupplyMono";
-  src: url("/PPSupplyMono-Regular.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "PPSupplyMono";
-  src: url("/PPSupplyMono-Medium.ttf") format("truetype");
+  src: url("./assets/font/ppsupplymono woff2/PPSupplyMono-Medium.woff2")
+      format("woff2"),
+    url("./assets/font/ppsupplymono woff2/PPSupplyMono-Medium.ttf")
+      format("truetype");
   font-weight: 500;
   font-style: normal;
+  font-display: swap;
 }
 
-/* Custom font-face for PPSupplyMono */
 @font-face {
   font-family: "PPSupplyMono";
   src: url("./assets/font/ppsupplymono woff2/PPSupplyMono-Regular.woff2")
-    format("woff2");
-  font-weight: normal;
+      format("woff2"),
+    url("./assets/font/ppsupplymono woff2/PPSupplyMono-Regular.ttf")
+      format("truetype");
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "PPSupplyMono";
-  src: url("/PPSupplyMono-Semibold.ttf") format("truetype");
+  src: url("./assets/font/ppsupplymono woff2/PPSupplyMono-Semibold.woff2")
+      format("woff2"),
+    url("./assets/font/ppsupplymono woff2/PPSupplyMono-Semibold.ttf")
+      format("truetype");
   font-weight: 600;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "PPSupplyMono";
-  src: url("/PPSupplyMono-Bold.ttf") format("truetype");
+  src: url("./assets/font/ppsupplymono woff2/PPSupplyMono-Bold.woff2")
+      format("woff2"),
+    url("./assets/font/ppsupplymono woff2/PPSupplyMono-Bold.ttf")
+      format("truetype");
   font-weight: 700;
   font-style: normal;
+  font-display: swap;
 }
 
 html,
@@ -73,8 +89,6 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
   background: hsla(0, 0%, 9.41%, 1);
 }
 

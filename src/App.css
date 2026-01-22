@@ -1,22 +1,24 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-
   --fare-blue: #2ecdc9;
   --fare-red: #F05D80;
   --fare-green: #90ED7D;  
 
+  width: 100%;
+  height: 100%;
 }
 
-.section-wrapper {
+.app-wrapper {
   position: relative;
-  height: 100%;
-  padding-bottom: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .page-wrapper {
-  max-width: 940px;
-  padding-block: 10vh;
+  padding: 10%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:  center;
 }

@@ -4,6 +4,7 @@
   top: 0;
   display: grid;
   grid-template-columns: 1.5fr 2fr 1.5fr;
+  padding-block: 25px;
 }
 
 ul {
@@ -21,17 +22,10 @@ ul li {
   list-style-type: none;
 }
 
+.navbar-wrapper::after,
 .navbar-wrapper::before {
   content: " ";
   border-bottom: 1px solid white;
   height: 50%;
   margin-inline: 36px;
-}
-
-.navbar-wrapper::after {
-  content: " ";
-  border-bottom: 1px solid white;
-  height: 50%;
-  margin-inline: 36px;
-
 }

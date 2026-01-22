@@ -34,10 +34,10 @@ export const HomePage = () => {
       <div>
         <button className="btn--launch">launch</button>
         <div>
-          <button>
+          <button aria-label="Join our Discord community">
             <img src={DiscordIcon} alt="Discord Logo" width={40} />
           </button>
-          <button>
+          <button aria-label="Follow us on Twitter">
             <img src={TwitterIcon} alt="Twitter Logo" width={40} />
           </button>
         </div>
