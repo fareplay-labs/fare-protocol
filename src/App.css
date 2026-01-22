@@ -1,7 +1,7 @@
 #root {
   --fare-blue: #2ecdc9;
-  --fare-red: #F05D80;
-  --fare-green: #90ED7D;  
+  --fare-red: #f05d80;
+  --fare-green: #90ed7d;
 
   width: 100%;
   height: 100%;
@@ -9,6 +9,7 @@
 
 .app-wrapper {
   position: relative;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,5 +21,14 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items:  center;
+  align-items: center;
+}
+
+.content-section {
+  max-width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: justify;
 }
