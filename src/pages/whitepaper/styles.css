@@ -1,0 +1,35 @@
+.paper-card {
+  height: 50vh;
+  width: 50vw;
+  overflow: scroll;
+  box-shadow: 1px 1px 5px 5px rgba(0, 0, 0, 0.342);
+  padding: 6px 24px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.paper-card::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+.paper-header {
+    text-align: center;
+    font-size: 32px;
+    line-height: 1.2;
+}
+
+.paper-content {
+    width: 90%;
+    margin: auto;
+    text-align: left;
+}
+
+
+.pagination-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}

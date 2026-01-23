@@ -100,9 +100,13 @@ a {
   font-weight: 500;
   color: #fff;
   text-decoration: inherit;
+  transition: all 0.5s ease-in-out;
+  display: inline-block;
 }
+
 a:hover {
-  color: #aaa;
+  filter: saturate(20);
+  transform: scale(1.05);
 }
 
 h1 {

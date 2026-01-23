@@ -34,3 +34,10 @@
   align-items: center;
   text-align: justify;
 }
+
+.sub-header {
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  margin-block: 2rem;
+  font-weight: 600;
+}

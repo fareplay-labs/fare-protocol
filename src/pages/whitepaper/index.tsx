@@ -1,7 +1,15 @@
+import "./styles.css";
+import { PaperCarousel } from "./PaperCarousel";
+
 export const WhitepaperPage = () => {
   return (
     <div className="page-wrapper">
-      <h1>Whitepaper Page</h1>
+      <div className="content-section">
+        <h1 style={{ textAlign: 'center'}}>The Architecture and Design of FARE Protocol</h1>
+        <p className="sub-header">Jay McCarthy (jay@fareprotocol.io) FARE</p>
+
+        <PaperCarousel />
+      </div>
     </div>
   );
 };
