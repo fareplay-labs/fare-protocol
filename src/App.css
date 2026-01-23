@@ -25,7 +25,9 @@
 }
 
 .content-section {
-  max-width: 60%;
+  width: 60%;
+  max-width: 1280px;
+  min-width: 400px;
   display: flex;
   flex-direction: column;
   justify-content: center;

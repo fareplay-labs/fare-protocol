@@ -1,6 +1,14 @@
 .sub-header {
   text-transform: uppercase;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
+  margin-block: 2rem;
+  font-weight: 600;
+}
+
+.teal-text,
+.red-text,
+.green-text {
+  font-weight: 600;
 }
 
 .teal-text {
@@ -18,26 +26,27 @@
 .link-buttons-wrapper {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  gap: 56px;
-  padding-bottom: 56px;
+  gap: 2rem;
+  padding-bottom: 2rem;
+}
 
-  p {
-    font-weight: bold;
-    margin-bottom: 0;
-  }
+.link-buttons-wrapper p {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
 }
 
 .btn--launch {
   text-transform: uppercase;
   color: #fff;
   border: 2px solid #fff;
-  border-radius: 0;
+  border-radius: 4px;
   position: relative;
   z-index: 1;
-  min-width: 180px;
+  min-width: 200px;
   width: fit-content;
   margin: auto;
+  padding: 0.75em 2em;
 
   box-shadow:
     -1px 1px 0px var(--fare-red),
@@ -45,11 +54,14 @@
     1px -2px 0px var(--fare-blue),
     inset 1px -2px 0px var(--fare-blue);
 
-  transition: all 0.5s ease;
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
 }
 
 .btn--launch:hover {
-  border-radius: 2px;
+  border-radius: 6px;
   box-shadow:
     -1px 1px 2px var(--fare-red),
     inset -1px 1px 2px var(--fare-red),
@@ -58,16 +70,43 @@
 }
 
 .external-link-wrapper {
-  display: "flex";
+  display: flex;
   align-items: center;
   justify-content: center;
-  margin: auto;
+  gap: 1rem;
 }
 
 .external-link {
-  padding-inline: 12px;
+  padding-inline: 0.75rem;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
 
-  &:hover {
-    filter: invert(1);
+.external-link:hover {
+  filter: invert(1);
+}
+
+.sponsor-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 175px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sponsor-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  align-items: center;
+  margin-block: 1rem;
+
+  transition: all 0.5ms ease-in-out;
+
+  img {
+    width: 33%;
   }
 }
+

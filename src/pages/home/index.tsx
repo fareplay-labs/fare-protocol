@@ -3,6 +3,7 @@ import DiscordIcon from "../../assets/svgs/Discord.svg";
 import TwitterIcon from "../../assets/svgs/Twitter.svg";
 import FareProtocolLogo from "../../assets/svgs/FareProtocol.svg";
 import { Link } from "react-router-dom";
+import { SponsorsCarousel } from "./carousel";
 
 export const HomePage = () => {
   return (
@@ -13,15 +14,16 @@ export const HomePage = () => {
           DEPLOY PERMISSIONLESS + TRUSTLESS ON-CHAIN CASINOS
         </p>
 
-        <p>
-          <Link
-            to="https://jup.ag/swap?sell=So11111111111111111111111111111111111111112&buy=FAREtaJuGTKUbyuadgUNQn45XnJCa6BoKCavPHxfyLTv"
+        <div>
+          <a
+            href="https://jup.ag/swap?sell=So11111111111111111111111111111111111111112&buy=FAREtaJuGTKUbyuadgUNQn45XnJCa6BoKCavPHxfyLTv"
             target="_blank"
+            rel="noopener noreferrer"
             className="teal-text"
           >
             BUY FARE TOKEN
-          </Link>
-        </p>
+          </a>
+        </div>
 
         <p>
           FARE is a token that users will be able to gamble with via the
@@ -32,10 +34,10 @@ export const HomePage = () => {
           edge" in casinos).
         </p>
 
-        <p>
+        <div>
           <span className="red-text">BURN</span> &gt;{" "}
           <span className="green-text">MINT</span>
-        </p>
+        </div>
 
         <p>
           Because players lose more than they win, there is more burning than
@@ -43,7 +45,10 @@ export const HomePage = () => {
           token, and as such, FARE holders are the "house." Developers can
           deploy their own FARE casinos on top of the FAREVault smart contract
           permissionlessly and without a bankroll. Read the{" "}
-          <a href="/whitepaper">whitepaper</a> to learn more.
+          <Link to="/whitepaper" className="teal-text">
+            whitepaper
+          </Link>{" "}
+          to learn more.
         </p>
 
         <div className="link-buttons-wrapper">
@@ -52,27 +57,29 @@ export const HomePage = () => {
           <button className="btn--launch">launch</button>
 
           <div className="external-link-wrapper">
-            <Link
-              to="https://discord.com/invite/eUEwY3vS8R"
+            <a
+              href="https://discord.com/invite/eUEwY3vS8R"
               target="_blank"
+              rel="noopener noreferrer"
               aria-label="Join our Discord community"
               className="external-link"
             >
               <img src={DiscordIcon} alt="Discord Logo" width={40} />
-            </Link>
+            </a>
 
-            <Link
-              to="https://x.com/fareplayio"
+            <a
+              href="https://x.com/fareplayio"
               aria-label="Follow us on Twitter"
+              rel="noopener noreferrer"
               className="external-link"
               target="_blank"
             >
               <img src={TwitterIcon} alt="Twitter Logo" width={40} />
-            </Link>
+            </a>
           </div>
         </div>
 
-        <div> carousel section</div>
+        <SponsorsCarousel />
       </section>
     </main>
   );
