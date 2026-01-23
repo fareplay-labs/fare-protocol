@@ -53,7 +53,8 @@ export const HomePage = () => {
 
         <div className="link-buttons-wrapper">
           <p>Experience the first application on testnet, Fareplay:</p>
-
+          
+          {/* todo: add link to proper site here */}
           <button className="btn--launch">launch</button>
 
           <div className="external-link-wrapper">

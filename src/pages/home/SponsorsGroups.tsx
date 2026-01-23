@@ -1,4 +1,4 @@
-import { SponsorsList } from "../../data/sponsersList";
+import { SponsorsList } from "../../data/sponsorsList";
 
 const groupRanges = [
   { start: 1, end: 3 },
@@ -13,6 +13,10 @@ export const SponsorsGroup = ({
   groupIndex: number;
   active: boolean;
 }) => {
+  if (groupIndex < 0 || groupIndex >= groupRanges.length) {
+    return null; // or some fallback UI
+  }
+
   const { start, end } = groupRanges[groupIndex];
   return (
     <div className="sponsor-wrapper">

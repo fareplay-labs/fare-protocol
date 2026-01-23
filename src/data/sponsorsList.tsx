@@ -8,7 +8,6 @@ import sparkLogo from "../assets/svgs/Fund-20.svg";
 import QuantstampLogo from "../assets/svgs/Fund-21.svg";
 import DWeb3ILogo from "../assets/svgs/Fund-22.svg";
 
-
 export const SponsorsList = [
   {
     id: 1,

@@ -7,27 +7,37 @@ export const SponsorsCarousel = () => {
   const [index, setIndex] = useState(0);
   const [fade, setFade] = useState(true);
   const timeoutRef = useRef<number | null>(null);
+  const intervalRef = useRef<number | null>(null);
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    intervalRef.current = window.setInterval(() => {
       setFade(false);
-      timeoutRef.current = setTimeout(() => {
+      timeoutRef.current = window.setTimeout(() => {
         setIndex((prev) => (prev + 1) % groupCount);
         setFade(true);
       }, 500); // fade out duration
     }, 6000);
     return () => {
-      clearInterval(interval);
+      if (intervalRef.current) clearInterval(intervalRef.current);
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
     };
-  }, []);
+  }, [groupCount]);
 
   const handleDotClick = (i: number) => {
     setFade(false);
+    if (intervalRef.current) clearInterval(intervalRef.current);
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    timeoutRef.current = setTimeout(() => {
+    timeoutRef.current = window.setTimeout(() => {
       setIndex(i);
       setFade(true);
+      // Optionally resume auto-advance after interaction:
+      intervalRef.current = window.setInterval(() => {
+        setFade(false);
+        timeoutRef.current = window.setTimeout(() => {
+          setIndex((prev) => (prev + 1) % groupCount);
+          setFade(true);
+        }, 500);
+      }, 6000);
     }, 500);
   };
 

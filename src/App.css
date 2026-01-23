@@ -27,7 +27,7 @@
 .content-section {
   width: 60%;
   max-width: 1280px;
-  min-width: 400px;
+  min-width: min(400px, 100%);
   display: flex;
   flex-direction: column;
   justify-content: center;
