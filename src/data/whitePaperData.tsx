@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Img21 from "../assets/pngs/2.1.png";
 import Img31 from "../assets/pngs/3.1.png";
 import Img32 from "../assets/pngs/3.2.png";
 import Img51 from "../assets/pngs/5.1.png";
@@ -12,6 +13,20 @@ import Img65 from "../assets/pngs/6.5.png";
 import Img66 from "../assets/pngs/6.6.png";
 import Img71 from "../assets/pngs/7.1.png";
 import Img91 from "../assets/pngs/9.1.png";
+import Img92 from "../assets/pngs/9.2.png";
+import { InfoButton } from "../components/buttons/infoButton";
+
+const Qi = (
+  <em>
+    Q<sub>i</sub>
+  </em>
+);
+
+const ir = <em>r</em>;
+
+const iK = <em>K</em>;
+
+const iQ = <em>Q</em>;
 
 export const WhitePaperData = [
   {
@@ -29,10 +44,10 @@ export const WhitePaperData = [
         </p>
         <p>
           This document is structured as follows: First, we discuss the essence
-          of what a casino is and the concept of the ”bankroll”. Second, we
+          of what a casino is and the concept of the <q>bankroll</q>. Second, we
           describe the problem casinos must solve to stay solvent and make a
-          profit by ensuring a ”house edge”. Third, we discuss how a token with
-          probabilistic minting and burning operates like a casino with an
+          profit by ensuring a <q>house edge</q>. Third, we discuss how a token
+          with probabilistic minting and burning operates like a casino with an
           infinite bankroll. Fourth, we relate the infinite bankroll casino to
           the necessity of edge and the requirement to support arbitrary bets
           safely. Fifth, we discuss a general method for deriving bet payout
@@ -47,14 +62,15 @@ export const WhitePaperData = [
   {
     id: 2,
     title: "What is a Casino? A miserable pool of capital",
-    content: (
+    content: (onInfoClick: () => void) => (
       <>
         <p>
           The essence of a casino is a pool of capital that is used to take the
-          opposite side in bets initiated by <button>players</button>. This pool
-          of capital is called the bankroll and those who pool it are called the
-          house. For example, some investors may come together and pool $1
-          million dollars of capital and offer 2 to 1 odds on predicting the
+          opposite side in bets initiated by players
+          <InfoButton onInfoClick={onInfoClick} />. This pool of capital is
+          called the <em>bankroll</em> and those who pool it are called the{" "}
+          <em>house</em>. For example, some investors may come together and pool
+          $1 million dollars of capital and offer 2 to 1 odds on predicting the
           result of coin flips: players come; put up one dollar; state whether
           they expect the coin to be Heads or Tails; the casino operator flips
           the coin; if they were right, they get two dollars, and if they were
@@ -88,14 +104,14 @@ export const WhitePaperData = [
           that neither the casino, nor the player, should expect to gain
           anything from such a bet.
         </p>
-        <p>
+        <p style={{ display: "inline-block" }}>
           Therefore, if there are only single dollar bets allowed, then we would
           expect that the total value of the bankroll is always equal to $1
           million dollars, because it is extremely unlikely for there to be many
           repeated casino-losses in a row. For example, for the casino to be
           down $100, players would need to be correct 100 times in a row without
-          fail. The likelihood of this is 1 2 100 ≈ 1−30. This is extremely
-          unlikely
+          fail. The likelihood of this is <img src={Img21} alt="" width={90} />.
+          This is extremely unlikely
         </p>
         <p>
           On the other hand, if the casino allows a $500,000 bet, then it only
@@ -131,7 +147,7 @@ export const WhitePaperData = [
   {
     id: 3,
     title: "Edge: Why the house always wins",
-    content: (
+    content: (onInfoClick: () => void) => (
       <>
         <p>
           The even-odds coin flip is a bad investment for the house, because the
@@ -139,13 +155,13 @@ export const WhitePaperData = [
           expected value as:
         </p>
 
-        <img src={Img31} alt="" />
+        <img src={Img31} alt="math equation" className="papers-modal-image" />
 
         <p>
           In this equation P(X) represents the probability of outcome X, while V
           (X) represents the value of that outcome. (V (Loss) is −1, not −2,
-          because the house pays $2, using the player’s dollar and one of its
-          own.) Since this value is zero, there is no value in accepting the
+          because the house pays $2, using the player&apos;s dollar and one of
+          its own.) Since this value is zero, there is no value in accepting the
           bet.
         </p>
 
@@ -156,19 +172,16 @@ export const WhitePaperData = [
         </p>
 
         <ol>
+          <li>Increase P(Win), making it more likely for the casino to win</li>
           <li>
-            1. Increase P(Win), making it more likely for the casino to win
-          </li>
-          <li>
-            2. Increase V (Win), i.e. the cost of making the bet, so the casino
+            Increase V (Win), i.e. the cost of making the bet, so the casino
             gains more per win.
           </li>
           <li>
-            3. Decrease V (Loss), i.e. the amount the player wins, so the casino
+            Decrease V (Loss), i.e. the amount the player wins, so the casino
             loses less money per loss
           </li>
         </ol>
-
         <p>
           In principle, all of these options are possible. In practice, the
           first is most commonly done. But the third is the easiest to explain
@@ -181,7 +194,7 @@ export const WhitePaperData = [
           case the computation is as follows:
         </p>
 
-        <img src={Img32} alt="" />
+        <img src={Img32} alt="math equation" className="papers-modal-image" />
 
         <p>
           Thus, over many bets, we expect the casino to make 1% returns. This is
@@ -194,7 +207,8 @@ export const WhitePaperData = [
           outcome bet), because that represents the higher probability of the
           house winning, as compared to the 2 player.) With unit bets, the house
           edge is essentially the rate of return of the capital in the bankroll,
-          assuming an inexhaustible supply of <button>bettors</button>.
+          assuming an inexhaustible supply of bettors
+          <InfoButton onInfoClick={onInfoClick} />.
         </p>
       </>
     ),
@@ -222,8 +236,8 @@ export const WhitePaperData = [
           because the capital providers would be easily identifiable.
         </p>
         <p>
-          FARE’s innovation is based on a simple insight: the market cap of a
-          token is analogous to the value of a bankroll, where inflation (or
+          FARE&apos;s innovation is based on a simple insight: the market cap of
+          a token is analogous to the value of a bankroll, where inflation (or
           rather, deflation) is a measure of its growth rate. In typical
           cryptocurrency tokens, the inflation is tied to a preplanned schedule,
           but this is not a necessary part of how tokens must work. Instead, we
@@ -239,34 +253,35 @@ export const WhitePaperData = [
         </p>
         <p>
           It is typical for ERC-20 tokens on Ethereum to support operations like
-          mint and burn that are available to special ”administrator” accounts.
-          Instead, imagine that we have a single function called mintOrBurn.
-          This function has one argument, n, and it randomly either burns n from
-          the caller’s account or it mints n to the caller’s account. This is
-          like the aforementioned equal-odds coin flip: half of the time, the
-          bettor wins and receives (newly minted) assets; and half of the time,
-          the bettor loses and some of their assets are burned. A token with
-          this function would have the same value proposition as the simple
-          example casino bankroll, except with a crucial difference: this token
-          could support arbitrarily sized bets on day one, because winnings can
-          always be minted.
+          mint and burn that are available to special <q>administrator</q>{" "}
+          accounts. Instead, imagine that we have a single function called
+          mintOrBurn. This function has one argument, <em>n</em>, and it
+          randomly either burns <em>n</em> from the caller&apos;s account or it
+          mints <em>n</em> to the caller&apos;s account. This is like the
+          aforementioned equal-odds coin flip: half of the time, the bettor wins
+          and receives (newly minted) assets; and half of the time, the bettor
+          loses and some of their assets are burned. A token with this function
+          would have the same value proposition as the simple example casino
+          bankroll, except with a crucial difference: this token could support
+          arbitrarily sized bets on day one, because winnings can always be
+          minted.
         </p>
         <p>
           Of course, if we want a profitable bankroll, or a deflationary token,
           then we need to ensure that the burns (player losses / casino wins)
           are likely to outnumber the mints (player wins / casino losses). This
-          is done by creating a house edge by either decreasing the player’s
-          gain on a win or by increasing the likelihood of loss. We could
-          imagine the token having a global configuration that controls the bias
-          on the coin flip inside of mintOrBurn as a mechanism for increasing
-          the likelihood of player loss. This configuration is a ”knob” that
-          controls the token’s deflation. For the rest of this white-paper, we
-          assume that there is some house edge and thus the token is overall
-          deflationary.
+          is done by creating a house edge by either decreasing the
+          player&apos;s gain on a win or by increasing the likelihood of loss.
+          We could imagine the token having a global configuration that controls
+          the bias on the coin flip inside of mintOrBurn as a mechanism for
+          increasing the likelihood of player loss. This configuration is a{" "}
+          <q>knob</q> that controls the token&apos;s deflation. For the rest of
+          this white-paper, we assume that there is some house edge and thus the
+          token is overall deflationary.
         </p>
         <p>
           There is an interesting side-effect of this system: when players win,
-          they receive assets that appre ciate in value. Players bet FARE and
+          they receive assets that appreciate in value. Players bet FARE and
           receive FARE when they win, but FARE is deflationary, so the 100 FARE
           they win will be worth more tomorrow, based on how much the FARE
           protocol ecosystem wins over the next day. It is as if you played at a
@@ -277,7 +292,7 @@ export const WhitePaperData = [
           ecosystem:
         </p>
 
-        <ul>
+        <ol style={{ listStyle: "disc" }}>
           <li>
             When players win, the individual player is happy to receive an asset
             of value, but holders (past winners) are unhappy, because their
@@ -297,7 +312,7 @@ export const WhitePaperData = [
             increases demand for the token and the value possible from betting
             with the token, which encourages betting
           </li>
-        </ul>
+        </ol>
 
         <p>
           Of course, the mintOrBurn function only allows a trivial and boring
@@ -316,12 +331,12 @@ export const WhitePaperData = [
           In real casinos, players are making bets on things other than coin
           flips and getting payouts other than 1.98 on a 1 bet. For example,
           consider a bet on 14 in Roulette that pays 35x or 0. Or, consider a
-          ”Rock-Paper-Scissors” (RPS) slot machine that returns either 2 (win),
-          0.5 (tie), or 0 (loss). Neither of these bets can be represented by
-          the aforementioned mintOrBurn function. In the case of Roulette, the
-          payout is not equal to the cost; while in the case of RPS, there are
-          three outcomes, not two. In this section, we describe a general way to
-          represent any such bet.
+          <q>Rock-Paper-Scissors</q> (RPS) slot machine that returns either 2
+          (win), 0.5 (tie), or 0 (loss). Neither of these bets can be
+          represented by the aforementioned mintOrBurn function. In the case of
+          Roulette, the payout is not equal to the cost; while in the case of
+          RPS, there are three outcomes, not two. In this section, we describe a
+          general way to represent any such bet.
         </p>
 
         <p>
@@ -329,21 +344,24 @@ export const WhitePaperData = [
           value formula:
         </p>
 
-        <img src={Img51} alt="" />
+        <img src={Img51} alt="math equation" className="papers-modal-image" />
 
         <p>The defining things about a probabilistic process are:</p>
         <ol>
           <li>The outcomes (Win, Loss)</li>
           <li>The probabilities of each outcome (which add to one)</li>
           <li>The payoff of each outcome</li>
-          <p>If we extend the EV computation for three outcomes it is:</p>
-          <img src={Img52} alt="" />
-          <p>
-            (Given that the player’s expected value is negative, this is a
-            profitable bet for the casino.)
-          </p>
         </ol>
-
+        <p>If we extend the EV computation for three outcomes it is:</p>
+        <img
+          src={Img52}
+          alt="Extended EV computation for three outcomes"
+          className="papers-modal-image"
+        />
+        <p>
+          (Given that the player's expected value is negative, this is a
+          profitable bet for the casino.)
+        </p>
         <p>
           We refer to the sequence of probabilities (P(Outcome 1) through
           P(Outcome N)) as the Q vector and the sequence of payouts (V (Outcome
@@ -359,11 +377,11 @@ export const WhitePaperData = [
           value is simply the dot-product of the QK vectors, minus the cost.
         </p>
 
-        <img src={Img53} alt="" />
+        <img src={Img53} alt="math equation" className="papers-modal-image" />
 
         <p>
           Therefore, if Q·K is less than 1, then there is house edge. We call
-          the target value for the house edge the EV threshold.
+          the target value for the house edge the <em>EV threshold</em>.
         </p>
         <p>
           Therefore, rather than a token offering a bland mintOrBurn that always
@@ -380,10 +398,10 @@ export const WhitePaperData = [
           <li>2. Ensure that Q·K is less than the EV threshold.</li>
         </ol>
         <p>
-          Atoken that works this way seamlessly supports any bet of any size
+          A token that works this way seamlessly supports any bet of any size
           without any constraining bankroll and without any need to pre-approve
-          or validate bettors or game interfaces: all valid bets are automat
-          ically supported without approval, while guaranteeing that the
+          or validate bettors or game interfaces: all valid bets are
+          automatically supported without approval, while guaranteeing that the
           deflationary constraint on the token supply is maintained, by virtue
           of the EV threshold constraint.
         </p>
@@ -407,18 +425,18 @@ export const WhitePaperData = [
           probabilistic process: the Roulette wheel spins, the ball lands in a
           spot, we observe the spot, and that determines the outcome of the bet.
           In this model, we have a process with outcomes having some
-          probability, and we may want to know what the ”appropriate” payout for
-          that particular outcome is. This is like knowing Q (the probability
-          vector) but not knowing K (the payout vector).
+          probability, and we may want to know what the <q>appropriate</q>{" "}
+          payout for that particular outcome is. This is like knowing Q (the
+          probability vector) but not knowing K (the payout vector).
         </p>
         <p>
           Alternatively, you can think about the bet as being fundamentally
           about certain possible payouts: you are either going to get 200x, 50x,
           15x, 1x, or 0x. The process that derives why you get these payouts is
           irrelevant: what matters are the payouts themselves. But, we are
-          curious about what the ”appropriate” probability is for each payout.
-          This is like knowing K (the payout vector) but not knowing Q (the
-          probability vector).
+          curious about what the <q>appropriate</q> probability is for each
+          payout. This is like knowing K (the payout vector) but not knowing Q
+          (the probability vector).
         </p>
         <p>
           Mathematically, these situations are identical: we have one equation
@@ -431,36 +449,45 @@ export const WhitePaperData = [
           Consider the case of a single outcome, where Q is known and K is
           unknown:
         </p>
-        <img src={Img61} alt="" />
+        <img src={Img61} alt="math equation" className="papers-modal-image" />
 
         <p>
           We can do some basic algebraic balancing and derive an equation for
           the unknown. Consider the case of the 35x payout of the Roulette bet
           with a 1% house edge, the probability should be:
         </p>
-        <img src={Img62} alt="" />
+        <img src={Img62} alt="math equation" className="papers-modal-image" />
 
-        <p>
+        <p style={{ display: "inline-block" }}>
           But, we cannot determine the probabilities as soon as the QK vectors
-          have more than one element, because we have two unknowns (Q0 and Q1)
+          have more than one element, because we have two unknowns{" "}
+          <em>
+            Q<sub>0</sub>
+          </em>{" "}
+          and{" "}
+          <em>
+            Q<sub>1</sub>
+          </em>{" "}
           but only one equation: the system is under-constrained.
         </p>
+
         <p>
           One way to think about this problem is that there is a pre-determined
-          EV threshold and we can ”distribute” that EV to different outcomes.
-          Let α be a value in [0,1], which represents the share of the EV
-          allocated to the first outcome. Then the equation for two unknowns is:
+          <em>EV</em> threshold and we can <q>distribute</q> that EV to
+          different outcomes. Let α be a value in [0,1], which represents the
+          share of the EV allocated to the first outcome. Then the equation for
+          two unknowns is:
         </p>
-        <img src={Img63} alt="" />
+        <img src={Img63} alt="math equation" className="papers-modal-image" />
         <p>
           So, if we apply this to a game with a 5x and 10x payout and a 1% house
           edge, we get:
         </p>
-        <img src={Img64} alt="" />
+        <img src={Img64} alt="math equation" className="papers-modal-image" />
         <p>We can then apply these formulae to α = 0.5:</p>
-        <img src={Img65} alt="" />
+        <img src={Img65} alt="math equation" className="papers-modal-image" />
         <p>But we could just as well choose α = 0.1:</p>
-        <img src={Img66} alt="" />
+        <img src={Img66} alt="math equation" className="papers-modal-image" />
         <p>
           This is a drastic difference! In one case, the probability of winning
           10x is 5% and in the other it is 9%! Yet, the expected value (or house
@@ -472,17 +499,17 @@ export const WhitePaperData = [
           that sum to 1, one for each of the outcomes.
         </p>
         <p>
-          Given the symmetric relationship between Q and K, we can use this same
-          scheme for deriving K from Q as we just demonstrated we can use it to
-          derive Q from K. This means that we can translate any probabilistic
-          process with certain probabilities of observable outcomes into safe
-          payouts for bets on those outcomes; and, we can translate any payout
-          table into safe probabilities of winning those payouts. Moreover, we
-          can do this in a wildly flexible way that essentially allows game
-          designers (or players!) to choose which outcomes they’d like to
-          dedicate more EV to: imagine a slot machine that allows you to
-          increase the probability of certain payouts based on your own
-          preferences!
+          Given the symmetric relationship between {iQ} and {iK}, we can use
+          this same scheme for deriving {iK} from {iQ} as we just demonstrated
+          we can use it to derive {iQ} from {iK}. This means that we can
+          translate any probabilistic process with certain probabilities of
+          observable outcomes into safe payouts for bets on those outcomes;{" "}
+          <em>and,</em> we can translate any payout table into safe
+          probabilities of winning those payouts. Moreover, we can do this in a
+          wildly flexible way that essentially allows game designers (or
+          players!) to choose which outcomes they&apos;d like to dedicate more
+          EV to: imagine a slot machine that allows you to increase the
+          probability of certain payouts based on your own preferences!
         </p>
       </>
     ),
@@ -500,19 +527,19 @@ export const WhitePaperData = [
           casinos and games have exciting lights, drinks, entertainment,
           ambiance, and why each game has its own unique flavor and history that
           makes it special. In theory, the only thing that separates a game of
-          Blackjack at the Bellagio and the Wild West Casino behind Days’ Inn is
-          just the size of the bankroll and the bet limit; but in practice,
-          there is a gigantic difference.
+          Blackjack at the Bellagio and the Wild West Casino behind Days&apos;
+          Inn is just the size of the bankroll and the bet limit; but in
+          practice, there is a gigantic difference.
         </p>
         <p>
           In the FARE ecosystem, we want to create a system that can reward the
           Bellagio for attracting players differentially from the Wild West,
           even though they end up making the same smart contract calls on the
-          FARE contract. (Here ”the Bellagio” means some frontend site that
+          FARE contract. (Here <q>the Bellagio</q> means some frontend site that
           attracts more players, perhaps by being more enjoyable, creating a
           better community, or being better advertised.) We call the category of
-          actor that runs a frontend and facilitates bets the ”host” or
-          ”dealer”.
+          actor that runs a frontend and facilitates bets the <q>host</q> or{" "}
+          <q>dealer</q>.
         </p>
         <p>
           The most obvious way to do this is to charge a fee to the user
@@ -524,10 +551,10 @@ export const WhitePaperData = [
 
         <p>When a player makes a bet on a QK spec with a given host:</p>
         <ol>
-          <li>1. Transfer ϕ from player to host</li>
-          <li>2. Burn 1 of player’s tokens</li>
-          <li>3. Determine outcome, i, based on Q</li>
-          <img src={Img71} alt="" />
+          <li>Transfer ϕ from player to host</li>
+          <li>Burn 1 of player&apos;s tokens</li>
+          <li>Determine outcome, i, based on Q</li>
+          <img src={Img71} alt="math equation" className="papers-modal-image" />
         </ol>
 
         <p>
@@ -535,8 +562,8 @@ export const WhitePaperData = [
           We can get at these with the following questions:
         </p>
         <ol>
-          <li>1. How does this change the player’s expected values?</li>
-          <li>2. Why would a player designate a host?</li>
+          <li>How does this change the player&apos;s expected values?</li>
+          <li>Why would a player designate a host?</li>
         </ol>
 
         <h3>Players Expected Value.</h3>
@@ -560,21 +587,21 @@ export const WhitePaperData = [
 
         <h3>Incentivized Hosts.</h3>
         <p>
-          In the above description, the player ”designates” a host; what does
-          this mean in practice? Essentially the user will make a smart contract
-          call (constructed by a frontend) that includes a field for host. It
-          would be trivial to monkey-patch any frontend to remove this field (or
-          set it to be the player themselves). Essentially, there is no benefit
-          to the player for setting a host, except the abstract benefit of
-          consuming the additional glitz of the Bellagio. It would essentially
-          act as a ”tip”: an optional payout that a sophisticated user could
-          bypass, but that the average user might not because of the
-          inconvenience of avoiding it.
+          In the above description, the player <q>designates</q> a host; what
+          does this mean in practice? Essentially the user will make a smart
+          contract call (constructed by a frontend) that includes a field for
+          host. It would be trivial to monkey-patch any frontend to remove this
+          field (or set it to be the player themselves). Essentially, there is
+          no benefit to the player for setting a host, except the abstract
+          benefit of consuming the additional glitz of the Bellagio. It would
+          essentially act as a <q>tip</q>: an optional payout that a
+          sophisticated user could bypass, but that the average user might not
+          because of the inconvenience of avoiding it.
         </p>
         <p>
           We solve this lack of incentivization by splitting off a percentage of
-          the fee into a ”jackpot”. Each host designates a ϕj percentage of the
-          entire fee that is transferred not to the host, but to a special
+          the fee into a <q>jackpot</q>. Each host designates a ϕj percentage of
+          the entire fee that is transferred not to the host, but to a special
           jackpot register. Any time a player bets, in addition to winning the
           bet associated with the given QK vectors, they have a chance to win
           the jackpot. Jackpots grow as hosts are effective in drawing players
@@ -606,7 +633,7 @@ export const WhitePaperData = [
   {
     id: 8,
     title: "Playing safely with trusted RNG",
-    content: (
+    content: (onInfoClick: () => void) => (
       <>
         <p>
           Gambling is appealing because of its unexpected positive outcomes. The
@@ -627,28 +654,36 @@ export const WhitePaperData = [
         <h3>Evaluation algorithm.</h3>
         <p>
           AQKspec contains two parallel vectors of probabilities (Q) and payouts
-          (K). For example, the vectors Q=[0.125,0.0625,0.03125,0.5] and K =
-          [2,4,8,0.5]. This means there is a 12.5% chance of winning double and
-          a 50% chance of losing only half. What is an algorithm to randomly
-          determine which payout to return?
+          (K). For example, the vectors {iQ} = [0.125,0.0625,0.03125,0.5] and{" "}
+          {iK} = [2,4,8,0.5]. This means there is a 12.5% chance of winning
+          double and a 50% chance of losing only half. What is an algorithm to
+          randomly determine which payout to return?
         </p>
         <p>
-          Anincorrect algorithm is to consider four random numbers in the range
-          [0,1], one for each outcome, checking if the generated value is below
-          Qi, because those random values are new trials. If you did that in
+          An incorrect algorithm is to consider four random numbers in the range
+          [0,1], one for each outcome, checking if the generated value is below{" "}
+          {Qi}, because those random values are new trials. If you did that in
           order, then, for example, the probability of winning 8x would be
-          (1−0.125)×(1−0.0625)×0.03125, because you’d have to fail the previous
-          trials to get to attempt the 8x outcome.
+          (1−0.125)×(1−0.0625)×0.03125, because you&apos;d have to fail the
+          previous trials to get to attempt the 8x outcome.
         </p>
         <p>
           Instead, we have to consider only one random number and use that
           single source of randomness to determine which outcome is used. One
-          algorithm to do this is as follows: Given random number r ∈ [0,1],
-          check if r &lt;= Qi; if so, then the payout is Qk; otherwise, set r =
-          r − Qi and increment i. Thus, a value that would result in an 8x
-          payout in our example is 0.203125, because this value is greater than
-          0.125 and we set r to 0.078125, which is greater than 0.0625, so we
-          set r to 0.015625, which is less than 0.03125, so we pay out K2 = 8.
+          algorithm to do this is as follows: Given random number {ir} ∈ [0,1],
+          check if {ir} &lt;= {Qi}; if so, then the payout is{" "}
+          <em>
+            Q<sub>k</sub>
+          </em>
+          ; otherwise, set {ir} = {ir} − {Qi} and increment i. Thus, a value
+          that would result in an 8x payout in our example is 0.203125, because
+          this value is greater than 0.125 and we set {ir} to 0.078125, which is
+          greater than 0.0625, so we set {ir} to 0.015625, which is less than
+          0.03125, so we pay out{" "}
+          <em>
+            K<sub>2</sub>
+          </em>{" "}
+          = 8.
         </p>
         <p>
           Thus, if we can acquire one random number in the range [0,1], then we
@@ -687,10 +722,10 @@ export const WhitePaperData = [
         <p>
           Although Chainlink rarely drops requests, we have to ensure that bets
           cannot become locked or dead. In order to prevent this problem, we
-          include a ”timeout” provision where if a RNG request fails, then an
-          automated FARE operator posts a random value, which is combined with
-          low-quality network entropy (like block hashes), for carrying out the
-          outcome selection.
+          include a <q>timeout</q> provision where if a RNG request fails, then
+          an automated FARE operator posts a random value, which is combined
+          with low-quality network entropy (like block hashes), for carrying out
+          the outcome selection.
         </p>
 
         <h3>RNG risk and analysis.</h3>
@@ -700,9 +735,10 @@ export const WhitePaperData = [
           are regulated by government boards that check the RNG algo rithms, but
           such regulation does not use cryptographic standards like VRF. Worse,
           centralized online 8 gaming sites make vague to non-existent
-          statements about their RNG <button>algorithms</button>. In contrast,
-          the Chainlink VRF is transparent and verifiable. This protects both
-          players and FAR token holders (the house).
+          statements about their RNG algorithms
+          <InfoButton onInfoClick={onInfoClick} />. In contrast, the Chainlink
+          VRF is transparent and verifiable. This protects both players and FAR
+          token holders (the house).
         </p>
         <p>
           In the FARE system, the biggest risk is that Chainlink RNG fulfillment
@@ -716,14 +752,18 @@ export const WhitePaperData = [
         <h3>Other technical details.</h3>
         <p>
           The evaluationalgorithm assumes that a random value is a number in
-          [0,1], but Chainlink provides 256-bit integers in [0,2^256−1]. Thus,
-          we need to map such values into the [0,1] space.
+          [0,1], but Chainlink provides 256-bit integers in [0, 2<sup>256</sup>{" "}
+          − 1]. Thus, we need to map such values into the [0,1] space.
         </p>
         <p>
-          One way to do this is to translate probability vectors like Q=
-          [0.125,0.0625,0.03125,0.5] by multiplying by 2^256−1, so
-          Q0=1.4474011155×10^76. But, this is impractical for computing expected
-          values, which the FAR contract must for determining if a bet is safe.
+          One way to do this is to translate probability vectors like {iQ} =
+          [0.125,0.0625,0.03125,0.5] by multiplying by 2<sup>256</sup> − 1, so{" "}
+          <em>
+            Q<sub>0</sub>
+          </em>{" "}
+          = 1.4474011155×10<sup>76</sup>. But, this is impractical for computing
+          expected values, which the FARE contract must for determining if a bet
+          is safe.
         </p>
         <p>
           Instead, we could consider the 256-bit integer as a fixed point
@@ -744,37 +784,42 @@ export const WhitePaperData = [
           found that library to be less efficient and featureful.)
         </p>
         <p>
-          Giventhatweonlyusethefractionalcomponentoftherandomvalue,thismeansthatChainlink’s
-          256-bit randomvalue is reduce to just60bitsof randomness
-          inFARE.Thismeans thatoutcomes witha less than10−18 probabilitycannot
-          everoccur inFARE.For comparison, theprobabilityof winningthehardest
-          lotteryintheworld, theUnitedStatesPowerball, is3.42x10−9;
-          thismeansthat onFARE, the lowestprobabilityevent is less
-          likelythanwinningPowerball twice inarow. From anotherperspective, if
-          thehouseedge is1%, thentheEVthresholdis0.99, andthepayoutonthis
-          lowprobabilityeventwouldbe0.99/10−18=99×1016; thisnumber
-          isabout10,000timestheGDP
-          ofPlanetEarth.Unfortunately,FAREcannothandlebetswithpayoutssolarge.
+          Given that we only use the fractional component of the random value,
+          this means that Chainlink&apos;s 256-bit random value is reduced to
+          just 60 bits of randomness in FARE. This means that outcomes with a
+          probability less than 10<sup>-18</sup> cannot ever occur in FARE. For
+          comparison, the probability of winning the hardest lottery in the
+          world, the United States Powerball, is 3.42×10<sup>-9</sup>; this
+          means that on FARE, the lowest probability event is less likely than
+          winning Powerball twice in a row. From another perspective, if the
+          house edge is 1%, then the EV threshold is 0.99, and the payout on
+          this low probability event would be 0.99/10<sup>-18</sup> = 99×10
+          <sup>16</sup>; this number is about 10,000 times the GDP of Planet
+          Earth. Unfortunately, FARE cannot handle bets with payouts so large.
         </p>
         <p>
-          Thischoicealsoproducesasubtleprobleminthatsomefractionalvaluesaremorecommonthan
-          others(theyoccuroncemore),becausethenumberofbitsusedforthefractionalcomponentisnoteven.
-          Thus,wehavetoreject randomnumberswithamaximumintegervalue,
-          becausenotall fractional valuesarerepresentedwiththat
-          integervalue.ThisrejectionisasourceofpossibleVRFtimeouts.
+          This choice also produces a subtle problem in that some fractional
+          values are more common than others (they occur once more), because the
+          number of bits used for the fractional component is not even. Thus, we
+          have to reject random numbers with a maximum integer value, because
+          not all fractional values are represented with that integer value.
+          This rejection is a source of possible VRF timeouts.
         </p>
       </>
     ),
     popupContent: (
       <p>
-        One online casino has a ”Fairness and RNG Testing” page that says
-        nothing more than ”[Casino] certainly adheres to the industry’s best
-        practices by utilizing a Random Number Generator (RNG) to ensure that
-        the outcomes of their games are fair and not foreseen- guaranteeing the
-        unpredictability of each game. The RNG uses a computational algorithm to
-        produce a sequence of numbers and/or symbols which cannot be
-        mathematically determined.” There is literally nothing more available
-        about this site.
+        One online casino has a <q>Fairness and RNG Testing</q> page that says
+        nothing more than{" "}
+        <q>
+          [Casino] certainly adheres to the industry&apos;s best practices by
+          utilizing a Random Number Generator (RNG) to ensure that the outcomes
+          of their games are fair and not foreseen- guaranteeing the
+          unpredictability of each game. The RNG uses a computational algorithm
+          to produce a sequence of numbers and/or symbols which cannot be
+          mathematically determined.
+        </q>{" "}
+        There is literally nothing more available about this site.
       </p>
     ),
   },
@@ -784,9 +829,16 @@ export const WhitePaperData = [
     content: (
       <>
         <p>
-          This slot machine can be modeled with the vector K =
+          In this section, we consider a real-world gambling scenario, represent
+          it as a QK vector, and describe the evaluation scenario.
+        </p>
+        <p>Consider a slot machine with the following payout table:</p>
+        <img src={Img91} alt="payout table" className="papers-modal-image" />
+
+        <p>
+          This slot machine can be modeled with the vector {iK} =
           [800,200,40,15,6,2]. Even though there are two outcomes with a payout
-          of 6, it only appears one time in K, because the graphical depiction
+          of 6, it only appears one time in {iK}, because the graphical depiction
           of that outcome is independent of the payout amount. Whatever outcome
           the evaluation mechanism selects, the user interface can then generate
           a display that shows that particular selection of images showing up.
@@ -795,16 +847,15 @@ export const WhitePaperData = [
           determining the outcome from those reel values.)
         </p>
         <p>
-          This K vector can be paired with multiple Q vectors for a given EV
-          threshold. Suppose the EV threshold is 0.99 and then EV is split
-          evenly across all outcomes. Then, the vector Q =
+          This {iK} vector can be paired with multiple {iQ} vectors for a given
+          EV threshold. Suppose the EV threshold is 0.99 and then EV is split
+          evenly across all outcomes. Then, the vector {iQ} =
           [0.00020625,0.000825,0.004125,0.011,0.0275,0.0825]. (The probability
           of no return is 0.87384375). The expected value (dot product) of these
           vectors is 0.99, as required.
         </p>
         <p>
-          The expected value (dot product) of these vectors is 0.99, as
-          required. Suppose a user places a 5 FARE bet on this machine. They
+          Suppose a user places a 5 FARE bet on this machine. They
           authorize the FARE contract to burn 5 FARE, which it does, as well as
           transferring some small fee to the host, jackpot, and network
           treasury. Then, the FARE contract registers a VRF request to Chainlink
@@ -814,10 +865,11 @@ export const WhitePaperData = [
           While the animation of a spinning slot machine runs, Chainlink posts a
           random number to FARE with the id 1337. In this case, it posts a
           number interpreted as 5231.01615625. FARE ignores the integer
-          components of sets r = 0.01615625. This value is greater than
-          0.00020625, so the payout is not 800x. r is set to 0.01595, which is
-          greater than 0.000825, so the payout is not 200x. r is set to
-          0.015125, which is greater than 0.004125, so the payout is not 40x. r
+          components of sets {ir} = 0.01615625. This value is greater than
+          0.00020625, so the payout is not 800x. {ir} is set to 0.01595, which
+          is greater than 0.000825, so the payout is not 200x. {ir} is set to
+          0.015125, which is greater than 0.004125, so the payout is not 40x.{" "}
+          {ir}
           is set to 0.011, which is less than or equal to 0.011, so the payout
           is 15x.
         </p>
@@ -833,12 +885,17 @@ export const WhitePaperData = [
         </p>
         <p>
           In our simulation environment, we ran a trial of 10,000 runs of 10,000
-          bets, with an initial bankroll of 1 million, where every bet’s maximum
-          payout was 1% of the total bankroll, and found that the average ending
-          bankroll was 1,001,214.75. A histogram of the final bankrolls
-          (averaged to the nearest 1, 000) is shown on the left in red):
+          bets, with an initial bankroll of 1 million, where every bet&apos;s
+          maximum payout was 1% of the total bankroll, and found that the
+          average ending bankroll was 1,001,214.75. A histogram of the final
+          bankrolls (averaged to the nearest 1,000) is shown on the left in
+          red):
         </p>
-        <img src={Img91} alt="" />
+        <img
+          src={Img92}
+          alt="histogram of final bankrolls"
+          className="papers-modal-image"
+        />
         <p>
           The right-side weight of this graph shows that this game is likely to
           produce returns for the house, but only in expectation. The house
@@ -855,7 +912,7 @@ export const WhitePaperData = [
       <p>
         This paper describes the architecture of FARE protocol, a Web3
         probabilities protocol that facilitates a generic and powerful gambling
-        mechanism. We’ve demonstrated how this mechanism supports arbitrary
+        mechanism. We&apos;ve demonstrated how this mechanism supports arbitrary
         bets, fee distribution to multiple parties, and can be deployed safely
         in the modern Ethereum ecosystem. For more information about FARE,
         please visit our site at{" "}
@@ -867,7 +924,6 @@ export const WhitePaperData = [
         >
           https://www.fareprotocol.io
         </Link>
-        .
       </p>
     ),
   },
