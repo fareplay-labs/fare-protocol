@@ -110,8 +110,9 @@ export const WhitePaperData = [
           million dollars, because it is extremely unlikely for there to be many
           repeated casino-losses in a row. For example, for the casino to be
           down $100, players would need to be correct 100 times in a row without
-          fail. The likelihood of this is <img src={Img21} alt="" width={90} />.
-          This is extremely unlikely
+          fail. The likelihood of this is{" "}
+          <img src={Img21} alt="math equation" width={90} />. This is extremely
+          unlikely
         </p>
         <p>
           On the other hand, if the casino allows a $500,000 bet, then it only
@@ -838,13 +839,13 @@ export const WhitePaperData = [
         <p>
           This slot machine can be modeled with the vector {iK} =
           [800,200,40,15,6,2]. Even though there are two outcomes with a payout
-          of 6, it only appears one time in {iK}, because the graphical depiction
-          of that outcome is independent of the payout amount. Whatever outcome
-          the evaluation mechanism selects, the user interface can then generate
-          a display that shows that particular selection of images showing up.
-          (In other words, the reel display is a result of the outcome
-          selection, rather than the reels being computed (and displayed), then
-          determining the outcome from those reel values.)
+          of 6, it only appears one time in {iK}, because the graphical
+          depiction of that outcome is independent of the payout amount.
+          Whatever outcome the evaluation mechanism selects, the user interface
+          can then generate a display that shows that particular selection of
+          images showing up. (In other words, the reel display is a result of
+          the outcome selection, rather than the reels being computed (and
+          displayed), then determining the outcome from those reel values.)
         </p>
         <p>
           This {iK} vector can be paired with multiple {iQ} vectors for a given
@@ -855,11 +856,11 @@ export const WhitePaperData = [
           vectors is 0.99, as required.
         </p>
         <p>
-          Suppose a user places a 5 FARE bet on this machine. They
-          authorize the FARE contract to burn 5 FARE, which it does, as well as
-          transferring some small fee to the host, jackpot, and network
-          treasury. Then, the FARE contract registers a VRF request to Chainlink
-          with the identifier 1337.
+          Suppose a user places a 5 FARE bet on this machine. They authorize the
+          FARE contract to burn 5 FARE, which it does, as well as transferring
+          some small fee to the host, jackpot, and network treasury. Then, the
+          FARE contract registers a VRF request to Chainlink with the identifier
+          1337.
         </p>
         <p>
           While the animation of a spinning slot machine runs, Chainlink posts a
@@ -889,7 +890,7 @@ export const WhitePaperData = [
           maximum payout was 1% of the total bankroll, and found that the
           average ending bankroll was 1,001,214.75. A histogram of the final
           bankrolls (averaged to the nearest 1,000) is shown on the left in
-          red):
+          red:
         </p>
         <img
           src={Img92}

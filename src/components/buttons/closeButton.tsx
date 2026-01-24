@@ -1,6 +1,7 @@
 export const CloseButton = ({ onClose }: { onClose: () => void }) => {
   return (
     <button
+      type="button"
       style={{
         position: "absolute",
         top: 0,
@@ -12,7 +13,7 @@ export const CloseButton = ({ onClose }: { onClose: () => void }) => {
       }}
       onClick={onClose}
       aria-label="Close dialog"
-    >
+    >    
       ×
     </button>
   );

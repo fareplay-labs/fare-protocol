@@ -45,7 +45,7 @@ const PaperCards = () => {
         </button>
         <span style={{ margin: "0 1rem" }}>
           {WhitePaperData.map((_, idx) => (
-            <span
+            <button
               key={idx}
               style={{
                 opacity: idx === currentIndex ? 1 : 0.6,
@@ -53,11 +53,16 @@ const PaperCards = () => {
                 margin: "0 0.6rem",
                 cursor: "pointer",
                 transition: "opacity 0.2s",
+                background: "none",
+                border: "none",
+                padding: 0,
               }}
               onClick={() => setCurrentIndex(idx)}
+              aria-label={`Go to page ${idx + 1}`}
+              aria-current={idx === currentIndex ? "page" : undefined}
             >
               {idx + 1}
-            </span>
+            </button>
           ))}
         </span>
         <button
