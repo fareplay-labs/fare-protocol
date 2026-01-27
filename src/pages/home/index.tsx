@@ -55,7 +55,7 @@ export const HomePage = () => {
           <p>Experience the first application on testnet, Fareplay:</p>
           
           {/* todo: add link to proper site here */}
-          <button className="btn--launch">launch</button>
+          <button className="button__bordered">launch</button>
 
           <div className="external-link-wrapper">
             <a
