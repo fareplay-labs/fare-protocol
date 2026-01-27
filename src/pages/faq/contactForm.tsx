@@ -3,6 +3,30 @@ import * as Yup from "yup";
 import "./styles.css";
 import { InputData } from "../../data/formData";
 
+const FormInput = ({
+  label,
+  type,
+  name,
+  placeholder,
+}: {
+  label: string;
+  type: string;
+  name: string;
+  placeholder: string;
+}) => (
+  <div className="form-group">
+    <label htmlFor={name}>{label}</label>
+    <Field
+      as={type === "textarea" ? "textarea" : "input"}
+      className="form-field"
+      type={type}
+      name={name}
+      placeholder={placeholder}
+    />
+    <ErrorMessage name={name} component="div" className="error" />
+  </div>
+);
+
 export const ContactForm = () => {
   const validationSchema = Yup.object({
     name: Yup.string()
@@ -17,30 +41,6 @@ export const ContactForm = () => {
       .max(500, "Message must be 500 characters or less")
       .required("Message is required"),
   });
-
-  const FormInput = ({
-    label,
-    type,
-    name,
-    placeholder,
-  }: {
-    label: string;
-    type: string;
-    name: string;
-    placeholder: string;
-  }) => (
-    <div className="form-group">
-      <label htmlFor={name}>{label}</label>
-      <Field
-        as={type === "textarea" ? "textarea" : "input"}
-        className="form-field"
-        type={type}
-        name={name}
-        placeholder={placeholder}
-      />
-      <ErrorMessage name={name} component="div" className="error" />
-    </div>
-  );
 
   return (
     <Formik

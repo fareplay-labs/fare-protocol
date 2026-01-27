@@ -43,7 +43,7 @@
 }
 
 .button__bordered {
-text-transform: uppercase;
+  text-transform: uppercase;
   color: #fff;
   border: 2px solid #fff;
   border-radius: 4px;
@@ -67,7 +67,7 @@ text-transform: uppercase;
 }
 
 .button__bordered:hover {
-    border-radius: 6px;
+  border-radius: 6px;
   box-shadow:
     -1px 1px 2px var(--fare-red),
     inset -1px 1px 2px var(--fare-red),
