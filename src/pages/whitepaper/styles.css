@@ -2,6 +2,8 @@
   height: 50vh;
   width: 50vw;
   overflow: scroll;
+  margin: auto;
+
   box-shadow:
     1px 1px 5px 5px rgba(0, 0, 0, 0.062),
     inset 0px 0px 15px 1px #af99991f;
@@ -11,6 +13,12 @@
 
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE and Edge */
+}
+
+@media (max-width: 1000px) {
+  .paper-card {
+    width: 85%;
+  }
 }
 
 .paper-card::-webkit-scrollbar {
