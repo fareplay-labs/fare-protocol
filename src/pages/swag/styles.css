@@ -1,0 +1,42 @@
+.grid-wrapper {
+  display: flex;
+  /* width: 85%; */
+  align-items: center;
+  justify-content: center;
+}
+
+.subNav-header {
+  display: flex;
+  width: 100%;
+  gap: 24px;
+  cursor: pointer;
+}
+
+.subNav-item {
+  /* add link styles here */
+}
+
+.cards-wrapper {
+  width: 100%;
+}
+
+.cards-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  flex-wrap: nowrap;
+  gap: 56px;
+  margin-top: 24px;
+  overflow-y: auto;
+  max-width: 800px;
+}
+
+.card {
+  border: 1px solid white;
+  border-radius: 8px;
+  padding: 1rem;
+  width: 100%;
+  height: 300px;
+  position: relative;
+}
