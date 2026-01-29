@@ -72,3 +72,11 @@
   border: 1px solid transparent;
   border-radius: 6px;
 }
+
+.pagination-button {
+  margin: 0 0.6rem;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  background: none;
+  padding: 0;
+}
