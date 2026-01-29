@@ -46,13 +46,22 @@ export const ContactForm = () => {
     <Formik
       initialValues={{ name: "", email: "", message: "" }}
       validationSchema={validationSchema}
-      onSubmit={(values, { setSubmitting, resetForm }) => {
-        // Handle form submission
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-          resetForm();
-        }, 400);
+      onSubmit={async (values, { setSubmitting }) => {
+        try {
+          const formData = new FormData();
+          Object.entries(values).forEach(([key, value]) => {
+            formData.append(key, value);
+          });
+
+          await fetch("https://formsubmit.co/zynkah@far3.io", {
+            method: "POST",
+              body: formData,
+          });
+            console.log("Form submitted successfully");
+        } catch (error) {
+          console.error("Error submitting form:", error);
+        }
+        setSubmitting(false);
       }}
     >
       {({ isSubmitting }) => (
