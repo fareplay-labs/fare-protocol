@@ -1,5 +1,6 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { useRef } from "react";
 import "./styles.css";
 import { InputData } from "../../data/formData";
 
@@ -28,6 +29,7 @@ const FormInput = ({
 );
 
 export const ContactForm = () => {
+  const formRef = useRef<HTMLFormElement>(null);
   const validationSchema = Yup.object({
     name: Yup.string()
       .min(2, "Name must be at least 2 characters")
@@ -46,26 +48,27 @@ export const ContactForm = () => {
     <Formik
       initialValues={{ name: "", email: "", message: "" }}
       validationSchema={validationSchema}
-      onSubmit={async (values, { setSubmitting }) => {
-        try {
-          const formData = new FormData();
-          Object.entries(values).forEach(([key, value]) => {
-            formData.append(key, value);
-          });
-
-          await fetch("https://formsubmit.co/zynkah@far3.io", {
-            method: "POST",
-              body: formData,
-          });
-            console.log("Form submitted successfully");
-        } catch (error) {
-          console.error("Error submitting form:", error);
+      onSubmit={() => {
+        // After validation, submit the form natively
+        if (formRef.current) {
+          formRef.current.submit();
         }
-        setSubmitting(false);
       }}
     >
-      {({ isSubmitting }) => (
-        <Form className="form-wrapper">
+      {({ isSubmitting, handleSubmit }) => (
+        <form
+          className="form-wrapper"
+          action="https://formsubmit.co/zynkah@far3.io"
+          method="POST"
+          ref={formRef}
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSubmit(e);
+          }}
+        >
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="table" />
+
           {InputData.map((input) => (
             <FormInput
               key={input.name}
@@ -83,7 +86,7 @@ export const ContactForm = () => {
           >
             Submit
           </button>
-        </Form>
+        </form>
       )}
     </Formik>
   );

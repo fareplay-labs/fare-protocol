@@ -1,14 +1,66 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: hsla(0, 0%, 9.41%, 1);
+  border-radius: 10px;
+  padding: 32px 24px 24px 24px;
+  min-width: 320px;
+  width: 60%;
+  max-width: 90vw;
+  position: relative;
+  box-shadow:
+    1px 1px 5px 5px rgba(0, 0, 0, 0.062),
+    inset 0px 0px 15px 1px #af99991f;
+}
+
+.modal-close {
+  position: absolute;
+  top: 4px;
+  right: 14px;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #888;
+  z-index: 1;
+  padding: 0;
+}
+
+.contact-button {
+  font-weight: 600;
+  color: var(--fare-blue);
+  transition: all 0.5s ease-in-out;
+  display: inline-block;
+  padding-left: 0;
+
+  &:hover {
+    filter: brightness(2) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.12));
+    transform: scale(1.05);
+    transition:
+      color 0.3s,
+      filter 0.3s,
+      transform 0.3s;
+  }
+}
+
 .form-wrapper {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  width: 100%;
   border: 1px solid transparent;
   border-radius: 6px;
   padding: 6px 24px;
-  /* box-shadow:
-    1px 1px 5px 5px rgba(0, 0, 0, 0.062),
-    inset 0px 0px 15px 1px #af99991f; */
 }
 
 .form-group {
