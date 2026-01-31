@@ -21,34 +21,40 @@ export const FaqPage = () => {
   return (
     <div className="page-wrapper">
       <h1>FAQ</h1>
-      {FaqData.map((data) => (
-        <FaqDataCell
-          key={data.id}
-          question={data.question}
-          answer={data.answer}
-        />
-      ))}
+      <div className="content-section">
+        {FaqData.map((data) => (
+          <FaqDataCell
+            key={data.id}
+            question={data.question}
+            answer={data.answer}
+          />
+        ))}
 
-      <h2>
-        Have more questions?{" "}
-        <a
-          style={{ cursor: "pointer", textDecoration: "underline" }}
-          onClick={() => setShowModal(true)}
-        >
-          Contact us.
-        </a>
-      </h2>
+        <h2>
+          Have more questions?{" "}
+          <a
+            className="teal-text"
+            style={{ cursor: "pointer" }}
+            onClick={() => setShowModal(true)}
+          >
+            Contact us.
+          </a>
+        </h2>
 
-      {showModal && (
-        <div className="modal-overlay" onClick={() => setShowModal(false)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close" onClick={() => setShowModal(false)}>
-              &times;
-            </button>
-            <ContactForm />
+        {showModal && (
+          <div className="modal-overlay" onClick={() => setShowModal(false)}>
+            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+              <button
+                className="modal-close"
+                onClick={() => setShowModal(false)}
+              >
+                &times;
+              </button>
+              <ContactForm />
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

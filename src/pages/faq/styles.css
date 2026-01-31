@@ -12,7 +12,7 @@
 }
 
 .modal-content {
-  background: black;
+  background: hsla(0, 0%, 9.41%, 1);
   border-radius: 10px;
   padding: 32px 24px 24px 24px;
   min-width: 320px;
@@ -26,14 +26,15 @@
 
 .modal-close {
   position: absolute;
-  top: 8px;
-  right: 12px;
+  top: 4px;
+  right: 14px;
   background: none;
   border: none;
   font-size: 2rem;
   cursor: pointer;
   color: #888;
   z-index: 1;
+  padding: 0;
 }
 
 .form-wrapper {
