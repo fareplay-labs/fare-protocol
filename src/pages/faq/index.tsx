@@ -32,13 +32,13 @@ export const FaqPage = () => {
 
         <h2>
           Have more questions?{" "}
-          <a
-            className="teal-text"
+          <button
+            className="contact-button"
             style={{ cursor: "pointer" }}
             onClick={() => setShowModal(true)}
           >
             Contact us.
-          </a>
+          </button>
         </h2>
 
         {showModal && (
