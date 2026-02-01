@@ -889,8 +889,7 @@ export const WhitePaperData = [
           bets, with an initial bankroll of 1 million, where every bet&apos;s
           maximum payout was 1% of the total bankroll, and found that the
           average ending bankroll was 1,001,214.75. A histogram of the final
-          bankrolls (averaged to the nearest 1,000) is shown on the left in
-          red:
+          bankrolls (averaged to the nearest 1,000) is shown on the left in red:
         </p>
         <img
           src={Img92}

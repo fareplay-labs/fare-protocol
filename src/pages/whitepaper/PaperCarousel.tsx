@@ -69,14 +69,8 @@ const PaperCards = () => {
       </div>
 
       {showModal && (
-        <div
-          className="papers-modal-wrapper"
-          onClick={() => setShowModal(false)}
-        >
-          <div
-            className="papers-modal-content"
-            onClick={(e) => e.stopPropagation()}
-          >
+        <div className="modal-overlay" onClick={() => setShowModal(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <CloseButton onClose={() => setShowModal(false)} />
             {modalContent}
           </div>
