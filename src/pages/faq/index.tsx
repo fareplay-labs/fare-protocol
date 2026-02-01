@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FaqData } from "../../data/faqData";
 import { ContactForm } from "./contactForm";
+import { CloseButton } from "../../components/buttons/closeButton";
 
 interface FaqDataCellProps {
   question: string;
@@ -44,12 +45,7 @@ export const FaqPage = () => {
         {showModal && (
           <div className="modal-overlay" onClick={() => setShowModal(false)}>
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-              <button
-                className="modal-close"
-                onClick={() => setShowModal(false)}
-              >
-                &times;
-              </button>
+              <CloseButton onClose={() => setShowModal(false)} />
               <ContactForm />
             </div>
           </div>
