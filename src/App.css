@@ -10,7 +10,6 @@
 .app-wrapper {
   position: relative;
   height: 100svh;
-  background: linear-gradient(#00000080, #00000080);
 }
 
 .page-wrapper {
@@ -21,12 +20,6 @@
   justify-content: center;
   align-items: center;
   
-}
-
-@media (max-width: 1000px) {
-  .page-wrapper {
-    padding: 10% 0 0 0;
-  }
 }
 
 .content-section {
