@@ -31,8 +31,9 @@
 }
 
 .paper-content {
-  width: 90%;
+  width: 100%;
   margin: auto;
+  word-break: break-all;
 }
 
 .pagination-wrapper {
@@ -71,6 +72,7 @@
   margin: auto;
   border: 1px solid transparent;
   border-radius: 6px;
+  width: inherit;
 }
 
 .pagination-button {
@@ -79,4 +81,10 @@
   transition: opacity 0.2s;
   background: none;
   padding: 0;
+}
+
+@media (max-width: 1000px) {
+  .pagination-button {
+    display: none;
+  }
 }

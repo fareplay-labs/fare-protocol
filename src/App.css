@@ -13,13 +13,13 @@
 }
 
 .page-wrapper {
-  padding: 10%;
+  padding: 10% 1%;
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
+  width: 100svw;
 }
 
 .content-section {
@@ -36,6 +36,11 @@
 @media (max-width: 1000px) {
   .content-section {
     width: 85%;
+    text-align: left;
+
+    div, p  {
+      width: inherit;
+    }
   }
 }
 
