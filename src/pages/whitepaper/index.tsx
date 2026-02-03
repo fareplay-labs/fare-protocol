@@ -5,6 +5,7 @@ export const WhitepaperPage = () => {
   return (
     <div className="page-wrapper">
       <div className="content-section">
+        
         <h1 style={{ textAlign: "center" }}>
           The Architecture and Design of FARE Protocol
         </h1>

@@ -1,6 +1,9 @@
 import { CloseButton } from "../../components/buttons/closeButton";
 import { WhitePaperData } from "../../data/whitePaperData";
 import { useState, type ReactNode } from "react";
+import RightArrow from "../../assets/svgs/caret-right.svg";
+import LeftArrow from "../../assets/svgs/caret-left.svg";
+
 
 const PaperCards = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -41,7 +44,7 @@ const PaperCards = () => {
       </div>
       <div className="pagination-wrapper">
         <button onClick={handlePrev} disabled={currentIndex === 0}>
-          Previous
+          <img src={LeftArrow} alt="Previous" width={24}/>
         </button>
         <span style={{ margin: "0 1rem" }}>
           {WhitePaperData.map((_, idx) => (
@@ -64,7 +67,7 @@ const PaperCards = () => {
           onClick={handleNext}
           disabled={currentIndex === WhitePaperData.length - 1}
         >
-          Next
+          <img src={RightArrow} alt="Next" width={24}/>
         </button>
       </div>
 

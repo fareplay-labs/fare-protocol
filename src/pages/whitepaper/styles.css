@@ -3,10 +3,10 @@
   width: 50vw;
   overflow: scroll;
   margin: auto;
-  padding: 6px 24px;
   border-radius: 8px;
   border: 1.5px solid var(--border-color);
   box-shadow: 0 0 4px var(--fare-blue);
+  position: relative;
 
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE and Edge */
@@ -25,13 +25,20 @@
   text-align: center;
   font-size: 32px;
   line-height: 1.2;
+  backdrop-filter: blur(2px);
+  background-color: rgba(0, 0, 0, 0.85);
+  position: sticky;
+  top: 0;
+  padding: 12px;
 }
 
 .paper-content {
-  width: 100%;
   margin: auto;
   overflow-wrap: break-word;
+  padding-inline: 24px;
+  text-align: justify;
 }
+
 .pagination-wrapper {
   display: flex;
   justify-content: space-between;
