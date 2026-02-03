@@ -7,7 +7,6 @@ const featuredItems = [
   { title: "Fare Patches", imageSrc: FarePatch },
   { title: "Beanies", imageSrc: FareBeanie },
   { title: "Stickers", imageSrc: CasinoSticker },
-
 ];
 
 const FeaturedCard = ({
@@ -26,29 +25,29 @@ const FeaturedCard = ({
 export const SwagPage = () => {
   return (
     <div className="page-wrapper">
-      <h1>Swag</h1>
-
-      <div className="grid-wrapper">
-        <div className="subNav-header">
-          <a className="subNav-item">Patches</a>
-          <a className="subNav-item">T-Shirts</a>
-          <a className="subNav-item">Hoodies</a>
-          <a className="subNav-item">Stickers</a>
-          <a className="subNav-item">Mugs</a>
+      <div className="content-section">
+        <div className="grid-wrapper">
+          <div className="subNav-header">
+            <a className="subNav-item">Patches</a>
+            <a className="subNav-item">T-Shirts</a>
+            <a className="subNav-item">Hoodies</a>
+            <a className="subNav-item">Stickers</a>
+            <a className="subNav-item">Mugs</a>
+          </div>
         </div>
-      </div>
 
-      {/* trending section */}
-      <div className="cards-wrapper">
-        <h2>FEATURED ITEMS</h2>
-        <div className="cards-container">
-          {featuredItems.map((item, idx) => (
-            <FeaturedCard
-              key={item.title + idx}
-              title={item.title}
-              imageSrc={item.imageSrc}
-            />
-          ))}
+        {/* trending section */}
+        <div className="cards-wrapper">
+          <h2>FEATURED ITEMS</h2>
+          <div className="cards-container">
+            {featuredItems.map((item, idx) => (
+              <FeaturedCard
+                key={item.title + idx}
+                title={item.title}
+                imageSrc={item.imageSrc}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>

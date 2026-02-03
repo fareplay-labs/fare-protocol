@@ -1,16 +1,22 @@
 import { LinksData } from "../../data/linksData";
 import { Dropdown } from "./dropdown";
 import "./styles.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export const Navbar = () => {
+  const location = useLocation();
   return (
     <>
       <div className="navbar-wrapper">
         <ul>
           {LinksData.map((link) => (
             <li key={link.id}>
-              <Link to={link.to}>{link.name}</Link>
+              <Link
+                to={link.to}
+                className={location.pathname === link.to ? "navbar-link-active" : ""}
+              >
+                {link.name}
+              </Link>
             </li>
           ))}
         </ul>

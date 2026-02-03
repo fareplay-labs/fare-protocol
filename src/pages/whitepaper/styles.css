@@ -3,13 +3,10 @@
   width: 50vw;
   overflow: scroll;
   margin: auto;
-
-  box-shadow:
-    1px 1px 5px 5px rgba(0, 0, 0, 0.062),
-    inset 0px 0px 15px 1px #af99991f;
   padding: 6px 24px;
-  border: 1px solid transparent;
   border-radius: 8px;
+  border: 1.5px solid var(--border-color);
+  box-shadow: 0 0 4px var(--fare-blue);
 
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE and Edge */
