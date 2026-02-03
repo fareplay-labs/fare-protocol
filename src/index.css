@@ -16,9 +16,9 @@
 @font-face {
   font-family: "PPSupplyMono";
   src:
-    url("./assets/font/ppsupplymono woff2/PPSupplyMono-Ultralight.woff2")
+    url("./assets/font/ppsupplymono-woff2/PPSupplyMono-Ultralight.woff2")
       format("woff2"),
-    url("./assets/font/ppsupplymono woff2/PPSupplyMono-Ultralight.ttf")
+    url("./assets/font/ppsupplymono-woff2/PPSupplyMono-Ultralight.ttf")
       format("truetype");
   font-weight: 200;
   font-style: normal;
@@ -28,9 +28,9 @@
 @font-face {
   font-family: "PPSupplyMono";
   src:
-    url("./assets/font/ppsupplymono woff2/PPSupplyMono-Light.woff2")
+    url("./assets/font/ppsupplymono-woff2/PPSupplyMono-Light.woff2")
       format("woff2"),
-    url("./assets/font/ppsupplymono woff2/PPSupplyMono-Light.ttf")
+    url("./assets/font/ppsupplymono-woff2/PPSupplyMono-Light.ttf")
       format("truetype");
   font-weight: 300;
   font-style: normal;
@@ -40,9 +40,9 @@
 @font-face {
   font-family: "PPSupplyMono";
   src:
-    url("./assets/font/ppsupplymono woff2/PPSupplyMono-Medium.woff2")
+    url("./assets/font/ppsupplymono-woff2/PPSupplyMono-Medium.woff2")
       format("woff2"),
-    url("./assets/font/ppsupplymono woff2/PPSupplyMono-Medium.ttf")
+    url("./assets/font/ppsupplymono-woff2/PPSupplyMono-Medium.ttf")
       format("truetype");
   font-weight: 500;
   font-style: normal;
@@ -52,9 +52,9 @@
 @font-face {
   font-family: "PPSupplyMono";
   src:
-    url("./assets/font/ppsupplymono woff2/PPSupplyMono-Regular.woff2")
+    url("./assets/font/ppsupplymono-woff2/PPSupplyMono-Regular.woff2")
       format("woff2"),
-    url("./assets/font/ppsupplymono woff2/PPSupplyMono-Regular.ttf")
+    url("./assets/font/ppsupplymono-woff2/PPSupplyMono-Regular.ttf")
       format("truetype");
   font-weight: 400;
   font-style: normal;
@@ -63,9 +63,9 @@
 @font-face {
   font-family: "PPSupplyMono";
   src:
-    url("./assets/font/ppsupplymono woff2/PPSupplyMono-Semibold.woff2")
+    url("./assets/font/ppsupplymono-woff2/PPSupplyMono-Semibold.woff2")
       format("woff2"),
-    url("./assets/font/ppsupplymono woff2/PPSupplyMono-Semibold.ttf")
+    url("./assets/font/ppsupplymono-woff2/PPSupplyMono-Semibold.ttf")
       format("truetype");
   font-weight: 600;
   font-style: normal;
@@ -75,9 +75,9 @@
 @font-face {
   font-family: "PPSupplyMono";
   src:
-    url("./assets/font/ppsupplymono woff2/PPSupplyMono-Bold.woff2")
+    url("./assets/font/ppsupplymono-woff2/PPSupplyMono-Bold.woff2")
       format("woff2"),
-    url("./assets/font/ppsupplymono woff2/PPSupplyMono-Bold.ttf")
+    url("./assets/font/ppsupplymono-woff2/PPSupplyMono-Bold.ttf")
       format("truetype");
   font-weight: 700;
   font-style: normal;

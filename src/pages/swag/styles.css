@@ -51,9 +51,7 @@
 
 .card {
   border: 1px solid transparent;
-  box-shadow:
-    1px 1px 5px 5px rgba(0, 0, 0, 0.062),
-    inset 0px 0px 15px 1px #af99991f;
+  box-shadow: 0 0 4px var(--fare-blue);
   border-radius: 8px;
   scroll-snap-align: start;
   padding: 1rem;
@@ -62,4 +60,5 @@
   height: 300px;
   position: relative;
   box-sizing: border-box;
+  margin-top: 10px;
 }

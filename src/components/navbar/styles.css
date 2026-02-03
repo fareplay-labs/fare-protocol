@@ -1,3 +1,13 @@
+/* Active navbar link color */
+.navbar-link-active {
+  color: var(--fare-blue
+) !important;
+  text-shadow:
+    0 0 8px var(--fare-blue
+),
+    0 0 2px var(--fare-blue
+);
+}
 .navbar-wrapper {
   width: 100%;
   position: absolute;

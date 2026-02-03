@@ -10,7 +10,7 @@ interface FaqDataCellProps {
 
 const FaqDataCell = ({ question, answer }: FaqDataCellProps) => {
   return (
-    <div>
+    <div style={{ width: "100%" }}>
       <h2>{question}</h2>
       <p>{answer}</p>
     </div>
@@ -21,7 +21,6 @@ export const FaqPage = () => {
   const [showModal, setShowModal] = useState(false);
   return (
     <div className="page-wrapper">
-      <h1>FAQ</h1>
       <div className="content-section">
         {FaqData.map((data) => (
           <FaqDataCell
