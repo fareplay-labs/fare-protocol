@@ -1,42 +1,46 @@
 .paper-card {
-  height: 50vh;
-  width: 50vw;
-  overflow: scroll;
-  margin: auto;
+  overflow: hidden;
   border-radius: 8px;
-  border: 1.5px solid var(--border-color);
-  box-shadow: 0 0 4px var(--fare-blue);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 0 10px var(--fare-blue);
   position: relative;
+  width: 100%;
+}
+
+.paper-header {
+  text-align: center;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  line-height: 1.2;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  padding: 0 12px;
+}
+
+.paper-content-wrapper {
+  margin: auto;
+  overflow-wrap: break-word;
+  padding-inline: 24px;
+  text-align: justify;
+  height: 60vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
 
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE and Edge */
 }
 
-@media (max-width: 1000px) {
-  .paper-card {
-    width: 85%;
-  }
-}
-
-.paper-card::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
-}
-.paper-header {
-  text-align: center;
-  font-size: 32px;
-  line-height: 1.2;
-  backdrop-filter: blur(2px);
-  background-color: rgba(0, 0, 0, 0.85);
-  position: sticky;
-  top: 0;
-  padding: 12px;
+.paper-content-wrapper::-webkit-scrollbar {
+  display: none;
 }
 
 .paper-content {
-  margin: auto;
-  overflow-wrap: break-word;
-  padding-inline: 24px;
-  text-align: justify;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  scroll-snap-align: start;
+  padding: 0 24px;
 }
 
 .pagination-wrapper {
@@ -44,6 +48,8 @@
   justify-content: space-between;
   align-items: center;
   margin-top: 1rem;
+  position: sticky;
+  z-index: 2;
 }
 
 .papers-modal-image {
@@ -52,6 +58,7 @@
   border: 1px solid transparent;
   border-radius: 6px;
   width: inherit;
+  max-width: 500px;
 }
 
 .pagination-button {
