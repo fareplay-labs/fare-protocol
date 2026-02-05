@@ -8,19 +8,36 @@ import { type MouseEvent } from "react";
 
 const PaperCards = () => {
   const [showModal, setShowModal] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [bottomInView, setBottomInView] = useState(false);
   const [modalContent, setModalContent] = useState<ReactNode>(null);
+
   const containerRef = useRef<HTMLDivElement>(null);
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const [activeIndex, setActiveIndex] = useState(0);
-
   // Track scroll to update activeIndex, but ignore when scrolling programmatically
   const isProgrammaticScroll = useRef(false);
 
   useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    // IntersectionObserver for bottom-in-view
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setBottomInView(entry.isIntersecting);
+      },
+      {
+        root: null,
+        threshold: 1.0,
+        rootMargin: "0px 0px -100% 0px", // Trigger when the bottom of the container is fully in view
+      },
+    );
+    observer.observe(container);
+
+    // Scroll handler for activeIndex
     const handleScroll = () => {
       if (isProgrammaticScroll.current) return;
-      if (!containerRef.current) return;
-      const containerTop = containerRef.current.getBoundingClientRect().top;
+      const containerTop = container.getBoundingClientRect().top;
       let minDiff = Infinity;
       let newIndex = 0;
       sectionRefs.current.forEach((ref, idx) => {
@@ -34,18 +51,16 @@ const PaperCards = () => {
       });
       setActiveIndex(newIndex);
     };
-    const container = containerRef.current;
-    if (container) {
-      container.addEventListener("scroll", handleScroll);
-    }
+    container.addEventListener("scroll", handleScroll);
+
     return () => {
-      if (container) container.removeEventListener("scroll", handleScroll);
+      observer.disconnect();
+      container.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
-  // When activeIndex changes (by button), scroll to the section
   useEffect(() => {
-    if (!containerRef.current) return;
+    if (!containerRef.current || !bottomInView) return;
     isProgrammaticScroll.current = true;
     const section = sectionRefs.current[activeIndex];
     if (section) {
@@ -56,7 +71,9 @@ const PaperCards = () => {
       isProgrammaticScroll.current = false;
     }, 400);
     return () => clearTimeout(timeout);
-  }, [activeIndex]);
+  }, [activeIndex, bottomInView]);
+
+
 
   if (WhitePaperData.length === 0) {
     return <div className="paper-card">No papers available.</div>;
@@ -67,6 +84,7 @@ const PaperCards = () => {
       e.preventDefault();
       e.stopPropagation();
     }
+    if (idx < 0 || idx >= WhitePaperData.length) return;
     setModalContent(WhitePaperData[idx].popupContent);
     setShowModal(true);
   };

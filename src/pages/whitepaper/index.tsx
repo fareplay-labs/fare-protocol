@@ -3,8 +3,8 @@ import { PaperCarousel } from "./PaperCarousel";
 
 export const WhitepaperPage = () => {
   return (
-    <div className="page-wrapper">
-      <div className="content-section">
+    <main className="page-wrapper">
+      <section className="content-section">
         
         <h1 style={{ textAlign: "center" }}>
           The Architecture and Design of FARE Protocol
@@ -18,7 +18,7 @@ export const WhitepaperPage = () => {
         </p>
 
         <PaperCarousel />
-      </div>
-    </div>
+      </section>
+    </main>
   );
 };
