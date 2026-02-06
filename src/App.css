@@ -1,19 +1,29 @@
-#root {
+:root {
   --fare-blue: #2ecdc9;
   --fare-red: #f05d80;
   --fare-green: #90ed7d;
+  --border-color: #af99991f;
+}
 
-  --border-color: #af99991f width: 100%;
+#root {
+  width: 100%;
   height: 100%;
+  font-family: "PPSupplyMono", "Fira Mono", "Consolas", monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 .app-wrapper {
   position: relative;
-  height: 100svh;
+  height: 100vh;
 }
 
 .page-wrapper {
-  padding: 10% 5%;
+  padding: 10% 5% 5% 5%;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -21,23 +31,17 @@
   align-items: center;
   width: 100%;
   max-width: 100vw;
-  box-sizing: border-box;
   margin: auto;
 }
 
-.content-section {
-  /* width: 60%;
-  max-width: 1280px;
-  min-width: min(400px, 100%);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: justify;
-  box-sizing: border-box; */
+@media (max-width: 400px) {
+  .page-wrapper {
+    padding: 12% 2% 12% 2%;
+  }
+}
 
+.content-section {
   min-height: 100vh;
-  font-family: "PPSupplyMono", "Fira Mono", "Consolas", monospace;
   padding: 0;
   margin: 0;
   width: 100vw;
@@ -45,14 +49,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-sizing: border-box;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1600px) {
+  .content-section {
+    max-width: 80%;
+  }
+}
+
+@media (max-width: 1400px) {
   .content-section {
     width: 100%;
-    max-width: 100vw;
-    box-sizing: border-box;
+    max-width: 90%;
     text-align: left;
   }
 }
@@ -62,6 +70,13 @@
   font-size: 1.5rem;
   margin-block: 2rem;
   font-weight: 600;
+}
+
+@media (max-width: 400px) {
+  .sub-header {
+    text-align: center;
+    margin-top: 1rem;
+  }
 }
 
 .button__bordered {

@@ -909,7 +909,7 @@ export const WhitePaperData = [
     id: 10,
     title: "Conclusion",
     content: (
-      <p>
+      <p style={{paddingBottom: 100}}>
         This paper describes the architecture of FARE protocol, a Web3
         probabilities protocol that facilitates a generic and powerful gambling
         mechanism. We&apos;ve demonstrated how this mechanism supports arbitrary

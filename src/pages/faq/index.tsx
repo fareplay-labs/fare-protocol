@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { FaqData } from "../../data/faqData";
-import { ContactForm } from "./contactForm";
-import { CloseButton } from "../../components/buttons/closeButton";
+import { ContactForm } from "../../components/contactForm";
+import { Modal } from "../../components/modal";
+import "./styles.css";
 
 interface FaqDataCellProps {
   question: string;
@@ -42,12 +43,9 @@ export const FaqPage = () => {
         </h2>
 
         {showModal && (
-          <div className="modal-overlay" onClick={() => setShowModal(false)}>
-            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-              <CloseButton onClose={() => setShowModal(false)} />
-              <ContactForm />
-            </div>
-          </div>
+          <Modal onClose={() => setShowModal(false)}>
+            <ContactForm email="zynkah@far3.io" />
+          </Modal>
         )}
       </div>
     </div>

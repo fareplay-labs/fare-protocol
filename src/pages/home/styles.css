@@ -16,6 +16,10 @@
   color: var(--fare-green);
 }
 
+.uppercase {
+  text-transform: uppercase;
+}
+
 .link-buttons-wrapper {
   display: flex;
   flex-direction: column;
