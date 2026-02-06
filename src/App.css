@@ -23,7 +23,7 @@
 }
 
 .page-wrapper {
-  padding: 10%;
+  padding: 10% 5% 5% 5%;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -45,10 +45,16 @@
   align-items: center;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1600px) {
+  .content-section {
+    max-width: 80%;
+  }
+}
+
+@media (max-width: 1400px) {
   .content-section {
     width: 100%;
-    max-width: 100vw;
+    max-width: 90%;
     text-align: left;
   }
 }

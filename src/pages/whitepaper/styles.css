@@ -18,6 +18,12 @@
   backdrop-filter: blur(2px);
 }
 
+@media (max-width: 400px) {
+  .paper-header {
+    font-size: 16px;
+  }
+}
+
 .paper-content-wrapper {
   margin: auto;
   overflow-wrap: break-word;
@@ -29,6 +35,12 @@
 
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE and Edge */
+}
+
+@media (max-width: 1000px) {
+  .paper-content-wrapper {
+    padding-inline: 0;
+  }
 }
 
 .paper-content-wrapper::-webkit-scrollbar {
@@ -48,7 +60,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 1rem;
   position: sticky;
   z-index: 2;
 }
