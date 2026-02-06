@@ -28,7 +28,11 @@ const FormInput = ({
   </div>
 );
 
-export const ContactForm = () => {
+interface FormProps {
+  email: string;
+}
+
+export const ContactForm = ({ email }: FormProps) => {
   const formRef = useRef<HTMLFormElement>(null);
   const validationSchema = Yup.object({
     name: Yup.string()
@@ -58,7 +62,8 @@ export const ContactForm = () => {
       {({ isSubmitting, handleSubmit }) => (
         <form
           className="form-wrapper"
-          action="https://formsubmit.co/zynkah@far3.io"
+          // action="https://formsubmit.co/zynkah@far3.io"
+          action={`https://formsubmit.co/${email}`}
           method="POST"
           ref={formRef}
           onSubmit={(e) => {

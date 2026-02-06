@@ -1,10 +1,10 @@
-import { CloseButton } from "../../components/buttons/closeButton";
 import { WhitePaperData } from "../../data/whitePaperData";
 import { useState, type ReactNode, useRef, useEffect } from "react";
 import RightArrow from "../../assets/svgs/caret-right.svg";
 import LeftArrow from "../../assets/svgs/caret-left.svg";
 import { motion } from "framer-motion";
 import { type MouseEvent } from "react";
+import { Modal } from "../../components/modal";
 
 const PaperCards = () => {
   const [showModal, setShowModal] = useState(false);
@@ -12,7 +12,8 @@ const PaperCards = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
-  // const [bottomInView, setBottomInView] = useState(false);
+  const [allowScrollToTop, setAllowScrollToTop] = useState(false);
+  const bottomRef = useRef<HTMLDivElement>(null);
 
   // Track scroll to update activeIndex, but ignore when scrolling programmatically
   const isProgrammaticScroll = useRef(false);
@@ -45,30 +46,31 @@ const PaperCards = () => {
     };
   }, []);
 
-  // useEffect(() => {
-  //   const container = containerRef.current;
-  //   if (!container) return;
-  //   const observer = new IntersectionObserver(
-  //     ([entry]) => {
-  //       setBottomInView(entry.isIntersecting);
-  //     },
-  //     {
-  //       root: null,
-  //       threshold: 1.0,
-  //       rootMargin: "0px 0px -100% 0px", // Trigger when the bottom of the container is fully in view
-  //     },
-  //   );
-  //   observer.observe(container);
-  //   return () => { observer.disconnect(); };
-  // }, []);
+  // Observe when the bottom of the container is in view
+  useEffect(() => {
+    const container = containerRef.current;
+    const bottom = bottomRef.current;
+    if (!container || !bottom) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setAllowScrollToTop(true);
+      },
+      {
+        root: container,
+        threshold: 1.0,
+      },
+    );
+    observer.observe(bottom);
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   // When activeIndex changes (by button), scroll to the section
   useEffect(() => {
-    if (
-      !containerRef.current
-      // || !bottomInView
-    )
-      return;
+    if (!containerRef.current) return;
+    // Only allow scroll-to-top if user has seen the bottom
+    if (activeIndex === 0 && !allowScrollToTop) return;
     isProgrammaticScroll.current = true;
     const section = sectionRefs.current[activeIndex];
     if (section) {
@@ -79,10 +81,7 @@ const PaperCards = () => {
       isProgrammaticScroll.current = false;
     }, 400);
     return () => clearTimeout(timeout);
-  }, [
-    activeIndex,
-    // bottomInView
-  ]);
+  }, [activeIndex, allowScrollToTop]);
 
   if (WhitePaperData.length === 0) {
     return <div className="paper-card">No papers available.</div>;
@@ -161,15 +160,12 @@ const PaperCards = () => {
             </motion.div>
           </div>
         ))}
+        {/* Invisible div to observe bottom */}
+        <div ref={bottomRef} style={{ height: 1 }} />
       </div>
 
       {showModal && (
-        <div className="modal-overlay" onClick={() => setShowModal(false)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <CloseButton onClose={() => setShowModal(false)} />
-            {modalContent}
-          </div>
-        </div>
+        <Modal onClose={() => setShowModal(false)}>{modalContent}</Modal>
       )}
     </div>
   );
