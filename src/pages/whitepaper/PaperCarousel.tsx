@@ -5,6 +5,7 @@ import LeftArrow from "../../assets/svgs/caret-left.svg";
 import { motion } from "framer-motion";
 import { type MouseEvent } from "react";
 import { Modal } from "../../components/modal";
+import { PaginationButton } from "../../components/buttons/paginationButton";
 
 const PaperCards = () => {
   const [showModal, setShowModal] = useState(false);
@@ -112,30 +113,29 @@ const PaperCards = () => {
 
   return (
     <div className="paper-card">
-      {/* Pagination Arrows */}
-      <div className="pagination-wrapper">
-        <button onClick={handlePrev} disabled={activeIndex === 0}>
-          <img src={LeftArrow} alt="Previous" width={24} />
-        </button>
 
-        {/* Sticky Title */}
-        <div className="paper-header">
+      <div className="paper-header-wrapper">
+        <PaginationButton
+          onClick={handlePrev}
+          disabled={activeIndex === 0}
+          imgSrc={LeftArrow}
+          altText="Previous"
+        />
           <motion.h3
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
             key={activeIndex}
+            className="paper-header"
           >
             {WhitePaperData[activeIndex].title}
-          </motion.h3>
-        </div>
-
-        <button
+          </motion.h3> 
+        <PaginationButton
           onClick={handleNext}
           disabled={activeIndex === WhitePaperData.length - 1}
-        >
-          <img src={RightArrow} alt="Next" width={24} />
-        </button>
+          imgSrc={RightArrow}
+          altText="Next"
+        />
       </div>
 
       {/* Scrollable Sections */}
