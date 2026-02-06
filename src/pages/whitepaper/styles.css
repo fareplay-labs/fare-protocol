@@ -28,6 +28,9 @@
 }
 
 @media (max-width: 400px) {
+  .paper-header-wrapper {
+    height: 120px;
+  }
   .paper-header {
     font-size: 16px;
   }
