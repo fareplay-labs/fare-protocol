@@ -13,8 +13,6 @@ const PaperCards = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [allowScrollToTop, setAllowScrollToTop] = useState(false);
-  const bottomRef = useRef<HTMLDivElement>(null);
 
   // Track scroll to update activeIndex, but ignore when scrolling programmatically
   const isProgrammaticScroll = useRef(false);
@@ -47,32 +45,12 @@ const PaperCards = () => {
     };
   }, []);
 
-  // Observe when the bottom of the container is in view
-  useEffect(() => {
-    const container = containerRef.current;
-    const bottom = bottomRef.current;
-    if (!container || !bottom) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setAllowScrollToTop(true);
-      },
-      {
-        root: container,
-        threshold: 1.0,
-      },
-    );
-    observer.observe(bottom);
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
 
   // When activeIndex changes (by button), scroll to the section
   useEffect(() => {
     if (!containerRef.current) return;
-    // Only allow scroll-to-top if user has seen the bottom
-    if (activeIndex === 0 && !allowScrollToTop) return;
     isProgrammaticScroll.current = true;
+    
     const section = sectionRefs.current[activeIndex];
     if (section) {
       section.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -81,8 +59,9 @@ const PaperCards = () => {
     const timeout = setTimeout(() => {
       isProgrammaticScroll.current = false;
     }, 400);
+
     return () => clearTimeout(timeout);
-  }, [activeIndex, allowScrollToTop]);
+  }, [activeIndex]);
 
   if (WhitePaperData.length === 0) {
     return <div className="paper-card">No papers available.</div>;
@@ -160,8 +139,6 @@ const PaperCards = () => {
             </motion.div>
           </div>
         ))}
-        {/* Invisible div to observe bottom */}
-        <div ref={bottomRef} style={{ height: 1 }} />
       </div>
 
       {showModal && (

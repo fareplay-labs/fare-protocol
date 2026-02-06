@@ -5,7 +5,6 @@
   box-shadow: 0 0 10px var(--fare-blue);
   position: relative;
   width: 100%;
-  max-height: 900px;
 }
 
 .paper-header-wrapper {
@@ -14,6 +13,7 @@
   align-items: center;
   position: sticky;
   z-index: 2;
+  height: 160px;
 }
 
 .paper-header {
