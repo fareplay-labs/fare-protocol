@@ -6,14 +6,13 @@ interface ProductsSectionProps {
 const FeaturedCard = ({
   title,
   imageSrc,
-  category
 }: {
   title: string;
     imageSrc: string;
   category: string;
 }) => (
   <div className="card">
-    <h3 id={category}>{title}</h3>
+    <h3>{title}</h3>
     <img src={imageSrc} alt={title} width={200} />
   </div>
 );
