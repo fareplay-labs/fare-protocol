@@ -19,7 +19,8 @@
 
 .cards-wrapper {
   width: 100%;
-  margin-block: 24px;
+  margin-block: 1.5px;
+  padding: 2rem 0;
 }
 
 @media (max-width: 1000px) {
@@ -33,6 +34,10 @@
   width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
+  padding: 1.5rem;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 
   scroll-snap-type: x mandatory;
   scrollbar-width: none; /* Firefox */
@@ -44,32 +49,43 @@
 }
 
 .card {
-  border: 1px solid transparent;
-  box-shadow: 0 0 4px rgba(227, 223, 215, 0.18);
-  border-right: 2px dashed grey;
-  overflow: hidden;
-    background-color: rgba(86, 78, 62, 0.18);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
+  border: 1px solid transparent;
+  border-right: 2px solid var(--fare-blue);
+  border-bottom: 2px solid var(--fare-blue);
+  border-radius: 18px;
+
+  overflow: hidden;
+  cursor: pointer;
+
+  background-color: rgba(86, 78, 62, 0.18);
+  box-shadow: 0 0 4px rgba(227, 223, 215, 0.18);
 
   scroll-snap-align: start;
 
-  padding: 1rem;
+  padding: 1.5rem 1rem 1rem 1rem;
   margin: 10px;
 
   min-width: 220px;
-  max-width: 220px;
-  height: 300px;
+  max-width: 240px;
+  min-height: 320px;
 
   position: relative;
 
   box-sizing: border-box;
   transition:
-    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform 0.18s cubic-bezier(0.4, 2.3, 0.3, 1),
+    box-shadow 0.18s;
 
   &:hover,
   &:focus-within {
-    transform: scale(1.025);
-    cursor: pointer;
+    transform: scale(1.06) rotate(-1deg);
+    box-shadow:
+      0 10px 20px 0 #00ffe799,
+      0 2px 0 #00ffe7;
   }
 
   h3 {
@@ -79,15 +95,22 @@
     top: 0;
     left: 2px;
     text-transform: uppercase;
-    letter-spacing: 2.5px;
+    letter-spacing: 0.04em;
+    color: #fff;
+    margin-bottom: 1.2rem;
+    text-transform: uppercase;
+    align-self: flex-start;
     line-height: 1;
   }
 
   img {
     position: absolute;
-    top: 60%;
+    top: 65%;
     left: 50%;
     transform: translate(-50%, -50%);
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
   }
 
   &::after {
@@ -96,7 +119,7 @@
     inset: 0;
     background-color: rgba(40, 30, 10, 0.18);
     opacity: 0;
-    transition: opacity 0.3s cubic-brazier(0.4, 0, 0.2, 1);
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     pointer-events: none;
     z-index: 2;
   }
@@ -130,5 +153,13 @@
     background-color: black;
     padding: 1rem 2rem;
     text-transform: uppercase;
+  }
+}
+
+
+@media (max-width: 900px) {
+  .cards-container {
+    flex-direction: column;
+    align-items: center;
   }
 }

@@ -1,6 +1,6 @@
 interface ProductsSectionProps {
   title: string;
-  products: { title: string; imageSrc: string }[];
+  products: { id: number; title: string; imageSrc: string }[];
 }
 
 const FeaturedCard = ({
@@ -21,13 +21,13 @@ export const ProductSection = ({ title, products }: ProductsSectionProps) => {
     <div className="cards-wrapper">
       <h2>{title}</h2>
       <div className="cards-container">
-        {products.map((product, idx) => (
+        {products.map((product) => (
           <FeaturedCard
-            key={product.title + idx}
+            key={product.id}
             title={product.title}
             imageSrc={product.imageSrc}
           />
-        ))}
+        ))}{" "}
       </div>
     </div>
   );
