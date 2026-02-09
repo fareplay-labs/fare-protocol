@@ -18,12 +18,14 @@
 }
 
 .subNav-item {
-  /* add link styles here */
+  &.active {
+    color: var(--fare-blue);
+  }
 }
 
 .cards-wrapper {
-  max-width: 800px;
-  margin-block: 56px;
+  width: 100%;
+  padding: 2rem 0;
 }
 
 @media (max-width: 1000px) {
@@ -34,11 +36,13 @@
 
 .cards-container {
   display: flex;
-  gap: 24px;
   width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
-  padding-bottom: 8px;
+  padding: 1.5rem;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 
   scroll-snap-type: x mandatory;
   scrollbar-width: none; /* Firefox */
@@ -50,15 +54,117 @@
 }
 
 .card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   border: 1px solid transparent;
-  box-shadow: 0 0 4px var(--fare-blue);
-  border-radius: 8px;
+  border-right: 2px solid var(--fare-blue);
+  border-bottom: 2px solid var(--fare-blue);
+  border-radius: 18px;
+
+  overflow: hidden;
+  cursor: pointer;
+
+  background-color: rgba(86, 78, 62, 0.18);
+  box-shadow: 0 0 4px rgba(227, 223, 215, 0.18);
+
   scroll-snap-align: start;
-  padding: 1rem;
+
+  padding: 1.5rem 1rem 1rem 1rem;
+  margin: 10px;
+
   min-width: 220px;
-  max-width: 220px;
-  height: 300px;
+  max-width: 240px;
+  min-height: 320px;
+
   position: relative;
+
   box-sizing: border-box;
-  margin-top: 10px;
+  transition:
+    transform 0.18s cubic-bezier(0.4, 2.3, 0.3, 1),
+    box-shadow 0.18s;
+
+  &:hover,
+  &:focus-within {
+    transform: scale(1.06) rotate(-1deg);
+    box-shadow:
+      0 10px 20px 0 #00ffe799,
+      0 2px 0 #00ffe7;
+  }
+
+  h3 {
+    font-size: 2.5rem;
+    opacity: 0.5;
+    position: absolute;
+    top: 0;
+    left: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #fff;
+    margin-bottom: 1.2rem;
+    text-transform: uppercase;
+    align-self: flex-start;
+    line-height: 1;
+  }
+
+  img {
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(40, 30, 10, 0.18);
+    opacity: 0;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  &:hover::after,
+  &:focus-within::after {
+    opacity: 1;
+  }
+
+  &::before {
+    content: "View";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    color: white;
+    opacity: 0;
+    z-index: 3;
+    pointer-events: none;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: inherit;
+    font-weight: 600;
+    letter-spacing: 0.4em;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+  }
+
+  &:hover::before,
+  &:focus-within::before {
+    opacity: 1;
+    background-color: black;
+    padding: 1rem 2rem;
+    text-transform: uppercase;
+  }
+}
+
+
+@media (max-width: 900px) {
+  .cards-container {
+    flex-direction: column;
+    align-items: center;
+  }
 }
