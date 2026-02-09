@@ -1,17 +1,19 @@
 interface ProductsSectionProps {
   title: string;
-  products: { id: number; title: string; imageSrc: string }[];
+  products: { id: number; title: string; imageSrc: string; category: string }[];
 }
 
 const FeaturedCard = ({
   title,
   imageSrc,
+  category
 }: {
   title: string;
-  imageSrc: string;
+    imageSrc: string;
+  category: string;
 }) => (
   <div className="card">
-    <h3>{title}</h3>
+    <h3 id={category}>{title}</h3>
     <img src={imageSrc} alt={title} width={200} />
   </div>
 );
@@ -26,8 +28,9 @@ export const ProductSection = ({ title, products }: ProductsSectionProps) => {
             key={product.id}
             title={product.title}
             imageSrc={product.imageSrc}
+            category={product.category}
           />
-        ))}{" "}
+        ))}
       </div>
     </div>
   );
