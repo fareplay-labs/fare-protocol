@@ -1,53 +1,46 @@
+import BlueProtoIcon from "../../assets/svgs/protocol-blue.svg";
+
 interface StepContainerProps {
   title: string;
   children: React.ReactNode;
 }
 
+import { DevData } from "../../data/devData";
 import "./styles.css";
+import rightArrow from '../../assets/svgs/caret-right.svg'
 
 const StepContainer = ({ title, children }: StepContainerProps) => {
   return (
-    <div className="developers-section-box">
+    <div className={title.indexOf("Backend") !== -1 ? "developers-section-box dots" : "developers-section-box"}>
       <div className="developers-section-title">{title}</div>
       <div className="developers-section-content">{children}</div>
+      {title.indexOf("IPFS") !== -1 && (
+        <img
+          src={BlueProtoIcon}
+          alt="Protocol Blue Icon"
+          className="developers-section-image"
+          width={400}
+        />
+      )}
+      {title.indexOf('NPM') !== -1 && (
+         <img
+          src={BlueProtoIcon}
+          alt="Protocol Blue Icon"
+          className="developers-section-image"
+          width={400}
+        />
+      )}
+      <button className='next-button'><img src={rightArrow} alt="Next" width={24}/></button>
     </div>
   );
 };
-
-const sectionData = [
-  {
-    id: 1,
-    title: "IPFS",
-    content: "Information about IPFS integration for developers.",
-  },
-  {
-    id: 2,
-    title: "Custom Domain",
-    content: "Guidelines on setting up a custom domain.",
-  },
-  {
-    id: 3,
-    title: "Custom UI",
-    content: "Instructions for creating a custom user interface.",
-  },
-  {
-    id: 4,
-    title: "Custom Backend",
-    content: "Details on building a custom backend.",
-  },
-  {
-    id: 5,
-    title: "Privy NPM",
-    content: "How to use the Privy NPM package in your projects.",
-  },
-];
 
 export const DevelopersPage = () => {
   return (
     <div className="page-wrapper">
       <div className="content-section">
         <div className="developers-section-list">
-          {sectionData.map((section) => (
+          {DevData.map((section) => (
             <StepContainer key={section.id} title={section.title}>
               {section.content}
             </StepContainer>
