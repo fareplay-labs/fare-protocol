@@ -1,8 +1,10 @@
 .paper-card {
   overflow: hidden;
   border-radius: 8px;
-  border: 1px solid var(--border-color);
-  box-shadow: 0 0 10px var(--fare-blue);
+  border-bottom: 4px solid var(--fare-blue);
+  background-color: black;
+
+  /* box-shadow: 0 0 10px var(--fare-blue); */
   position: relative;
   width: 100%;
 }

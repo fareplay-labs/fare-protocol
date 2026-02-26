@@ -6,8 +6,9 @@ import { motion } from "framer-motion";
 import { type MouseEvent } from "react";
 import { Modal } from "../../components/modal";
 import { PaginationButton } from "../../components/buttons/paginationButton";
+import ScrollLinked from "../../components/scrollbar";
 
-const PaperCards = () => {
+export const PaperCarousel = () => {
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState<ReactNode>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -45,12 +46,11 @@ const PaperCards = () => {
     };
   }, []);
 
-
   // When activeIndex changes (by button), scroll to the section
   useEffect(() => {
     if (!containerRef.current) return;
     isProgrammaticScroll.current = true;
-    
+
     const section = sectionRefs.current[activeIndex];
     if (section) {
       section.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -92,14 +92,14 @@ const PaperCards = () => {
 
   return (
     <div className="paper-card">
-
-      <div className="paper-header-wrapper">
-        <PaginationButton
-          onClick={handlePrev}
-          disabled={activeIndex === 0}
-          imgSrc={LeftArrow}
-          altText="Previous"
-        />
+      <ScrollLinked containerRef={containerRef}>
+        <div className="paper-header-wrapper">
+          <PaginationButton
+            onClick={handlePrev}
+            disabled={activeIndex === 0}
+            imgSrc={LeftArrow}
+            altText="Previous"
+          />
           <motion.h3
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -108,46 +108,43 @@ const PaperCards = () => {
             className="paper-header"
           >
             {WhitePaperData[activeIndex].title}
-          </motion.h3> 
-        <PaginationButton
-          onClick={handleNext}
-          disabled={activeIndex === WhitePaperData.length - 1}
-          imgSrc={RightArrow}
-          altText="Next"
-        />
-      </div>
+          </motion.h3>
+          <PaginationButton
+            onClick={handleNext}
+            disabled={activeIndex === WhitePaperData.length - 1}
+            imgSrc={RightArrow}
+            altText="Next"
+          />
+        </div>
 
-      {/* Scrollable Sections */}
-      <div ref={containerRef} className="paper-content-wrapper">
-        {WhitePaperData.map((page, idx) => (
-          <div
-            key={idx}
-            ref={(el) => {
-              sectionRefs.current[idx] = el;
-            }}
-            className="paper-content"
-          >
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: idx * 0.05 }}
-              style={{ width: "100%" }}
+        {/* Scrollable Sections */}
+        <div ref={containerRef} className="paper-content-wrapper">
+          {WhitePaperData.map((page, idx) => (
+            <div
+              key={idx}
+              ref={(el) => {
+                sectionRefs.current[idx] = el;
+              }}
+              className="paper-content"
             >
-              {typeof page.content === "function"
-                ? page.content((e?: MouseEvent) => handleInfoClick(e, idx))
-                : page.content}
-            </motion.div>
-          </div>
-        ))}
-      </div>
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: idx * 0.05 }}
+                style={{ width: "100%" }}
+              >
+                {typeof page.content === "function"
+                  ? page.content((e?: MouseEvent) => handleInfoClick(e, idx))
+                  : page.content}
+              </motion.div>
+            </div>
+          ))}
+        </div>
 
-      {showModal && (
-        <Modal onClose={() => setShowModal(false)}>{modalContent}</Modal>
-      )}
+        {showModal && (
+          <Modal onClose={() => setShowModal(false)}>{modalContent}</Modal>
+        )}
+      </ScrollLinked>
     </div>
   );
-};
-
-export const PaperCarousel = () => {
-  return <PaperCards />;
 };
