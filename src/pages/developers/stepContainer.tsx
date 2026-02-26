@@ -4,9 +4,14 @@ import BlueProtoIcon from "../../assets/svgs/protocol-blue.svg";
 interface StepContainerProps {
   title: string;
   children: React.ReactNode;
+  onClick?: () => void;
 }
 
-export const StepContainer = ({ title, children }: StepContainerProps) => {
+export const StepContainer = ({
+  title,
+  children,
+  onClick,
+}: StepContainerProps) => {
   return (
     <div
       className={
@@ -33,7 +38,12 @@ export const StepContainer = ({ title, children }: StepContainerProps) => {
           width={400}
         />
       )}
-      <button className="next-button">
+      <button
+        className="next-button"
+        type="button"
+        onClick={onClick}
+        aria-label="Next"
+      >
         <img src={rightArrow} alt="Next" width={24} />
       </button>
     </div>
