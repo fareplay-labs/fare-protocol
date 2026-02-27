@@ -41,16 +41,14 @@
 }
 
 .content-section {
-  min-height: 100vh;
   padding: 0;
   margin: 0;
-  width: 100vw;
+  width: 100%;
   max-width: 60%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
 @media (max-width: 1600px) {
   .content-section {
     max-width: 80%;
@@ -80,6 +78,9 @@
 }
 
 .button__bordered {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   text-transform: uppercase;
   color: #fff;
   border: 2px solid #fff;
@@ -110,14 +111,20 @@
     inset -1px 1px 2px var(--fare-red),
     1px -2px 2px var(--fare-blue),
     inset 1px -2px 2px var(--fare-blue);
+  border-color: transparent;
+}
+
+.button__bordered:focus-visible {
+  outline: 2px solid var(--fare-blue);
+  outline-offset: 4px;
 }
 
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background: rgba(0, 0, 0, 0.4);
   display: flex;
   align-items: center;

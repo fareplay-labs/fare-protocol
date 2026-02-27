@@ -7,20 +7,22 @@ export const Navbar = () => {
   const location = useLocation();
   return (
     <>
-      <div className="navbar-wrapper">
+      <nav className="navbar-wrapper" aria-label="Primary navigation">
         <ul>
           {LinksData.map((link) => (
             <li key={link.id}>
               <Link
                 to={link.to}
-                className={location.pathname === link.to ? "navbar-link-active" : ""}
+                className={
+                  location.pathname === link.to ? "navbar-link-active" : ""
+                }
               >
                 {link.name}
               </Link>
             </li>
           ))}
         </ul>
-      </div>
+      </nav>
       <Dropdown />
     </>
   );
