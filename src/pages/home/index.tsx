@@ -7,14 +7,19 @@ import { SponsorsCarousel } from "./carousel";
 
 export const HomePage = () => {
   return (
-    <main className="page-wrapper">
-      <section className="content-section">
-        <img src={FareProtocolLogo} alt="Fare Protocol Logo" width={200} />
-        <p className="sub-header">
-          DEPLOY PERMISSIONLESS + TRUSTLESS ON-CHAIN CASINOS
-        </p>
+    <main className="page-wrapper" aria-labelledby="home-title">
+      <section
+        className="content-section home-content"
+        aria-describedby="home-summary"
+      >
+        <header className="home-hero">
+          <img src={FareProtocolLogo} alt="Fare Protocol Logo" width={200} />
+          <h1 id="home-title" className="sub-header">
+            DEPLOY PERMISSIONLESS + TRUSTLESS ON-CHAIN CASINOS
+          </h1>
+        </header>
 
-        <div>
+        <div className="home-token-link">
           <a
             href="https://jup.ag/swap?sell=So11111111111111111111111111111111111111112&buy=FAREtaJuGTKUbyuadgUNQn45XnJCa6BoKCavPHxfyLTv"
             target="_blank"
@@ -25,7 +30,7 @@ export const HomePage = () => {
           </a>
         </div>
 
-        <p>
+        <p id="home-summary" className="home-copy">
           FARE is a token that users will be able to gamble with via the
           FAREVault smart contract. When a user wagers FARE and loses, their
           wagered FARE is burned. When a user wagers FARE and wins, their FARE
@@ -34,12 +39,12 @@ export const HomePage = () => {
           edge" in casinos).
         </p>
 
-        <div>
+        <p className="home-emphasis" aria-label="Burn is greater than mint">
           <span className="red-text">BURN</span> &gt;{" "}
           <span className="green-text">MINT</span>
-        </div>
+        </p>
 
-        <p>
+        <p className="home-copy">
           Because players lose more than they win, there is more burning than
           minting. This means FARE will be a probabilistically deflationary
           token, and as such, FARE holders are the "house." Developers can
@@ -51,8 +56,13 @@ export const HomePage = () => {
           to learn more.
         </p>
 
-        <div className="link-buttons-wrapper">
-          <p>Experience the first application on testnet, Fareplay:</p>
+        <section
+          className="link-buttons-wrapper"
+          aria-labelledby="fareplay-heading"
+        >
+          <h2 id="fareplay-heading" className="cta-heading">
+            Experience the first application on testnet, Fareplay:
+          </h2>
 
           {/* todo: add link to proper site here */}
           <a
@@ -63,28 +73,34 @@ export const HomePage = () => {
           >
             launch
           </a>
-          <div className="external-link-wrapper">
-            <a
-              href="https://discord.com/invite/eUEwY3vS8R"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Join our Discord community"
-              className="external-link"
-            >
-              <img src={DiscordIcon} alt="Discord Logo" width={40} />
-            </a>
 
-            <a
-              href="https://x.com/fareplayio"
-              aria-label="Follow us on Twitter"
-              rel="noopener noreferrer"
-              className="external-link"
-              target="_blank"
-            >
-              <img src={TwitterIcon} alt="Twitter Logo" width={40} />
-            </a>
-          </div>
-        </div>
+          <nav className="external-link-wrapper" aria-label="FARE social links">
+            <ul className="external-link-list">
+              <li>
+                <a
+                  href="https://discord.com/invite/eUEwY3vS8R"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Join our Discord community"
+                  className="external-link"
+                >
+                  <img src={DiscordIcon} alt="Discord" width={40} />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://x.com/fareplayio"
+                  aria-label="Follow us on Twitter"
+                  rel="noopener noreferrer"
+                  className="external-link"
+                  target="_blank"
+                >
+                  <img src={TwitterIcon} alt="Twitter" width={40} />
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </section>
 
         <SponsorsCarousel />
       </section>

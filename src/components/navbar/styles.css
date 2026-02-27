@@ -16,7 +16,7 @@
   }
 }
 
-ul {
+.navbar-wrapper ul {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -27,7 +27,7 @@ ul {
   font-weight: 700;
 }
 
-ul li {
+.navbar-wrapper ul li {
   list-style-type: none;
 }
 
