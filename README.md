@@ -1,74 +1,81 @@
-# React + TypeScript + Vite
+# FARE Protocol Web App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Frontend application for the FARE Protocol website, built with React, TypeScript, and Vite.
 
-Currently, two official plugins are available:
+This app includes public-facing pages for protocol information, whitepaper content, FAQ, swag, and developer resources.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
 
-## React Compiler
+- React 19
+- TypeScript
+- Vite
+- React Router
+- Framer Motion / Motion
+- Formik + Yup
+- ESLint
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Getting Started
 
-## Expanding the ESLint configuration
+### Prerequisites
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Node.js 20+
+- pnpm (recommended)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Install
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+pnpm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Run Locally
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+pnpm dev
 ```
-# fare-protocol
+
+Starts the app in development mode (Vite dev server).
+
+## Available Scripts
+
+- `pnpm dev` — Start development server
+- `pnpm build` — Type-check and create production build
+- `pnpm preview` — Preview production build locally
+- `pnpm lint` — Run ESLint
+
+## Routes
+
+- `/` — Home
+- `/whitepaper` — Whitepaper page with scroll-linked carousel content
+- `/developer` — Developer page (currently uses a Coming Soon placeholder)
+- `/faq` — FAQ page
+- `/swag` — Swag page
+
+## Project Structure
+
+```text
+src/
+  components/     Reusable UI components (navbar, modal, buttons, forms)
+  pages/          Route-level pages
+  data/           Static content/config for pages
+  assets/         Fonts, SVGs, PNGs
+  utils/          Small helper utilities
+  routes.tsx      App route definitions
+```
+
+## Build
+
+```bash
+pnpm build
+pnpm preview
+```
+
+## Contributing
+
+1. Create a branch from `main`
+2. Make focused changes
+3. Run lint/build locally
+4. Open a pull request with a clear description
+
+## License
+
+No license is currently specified in this repository.
