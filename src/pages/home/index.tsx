@@ -53,9 +53,13 @@ export const HomePage = () => {
 
         <div className="link-buttons-wrapper">
           <p>Experience the first application on testnet, Fareplay:</p>
-          
+
           {/* todo: add link to proper site here */}
-          <button className="button__bordered">launch</button>
+          <button className="button__bordered">
+            <Link to="https://ipfs.io/ipfs/bafybeiadjezydomrcl2t7r7w3au4copy3yenu6ferdonbhrz6q6dndj25m/#/fareVault?poolAccount=BqQ9fhDxit7r9gcVPmsCgudxTXeEcZS4yjNyRuqExbkx" target="_blank" rel="noopener noreferrer">
+              launch
+            </Link>
+          </button>
 
           <div className="external-link-wrapper">
             <a
