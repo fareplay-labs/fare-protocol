@@ -12,6 +12,9 @@ export const usePaperScrollSync = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
+  const programmaticScrollRef = useRef(false);
+  const targetScrollTopRef = useRef<number | null>(null);
+  const clearProgrammaticScrollTimeoutRef = useRef<number | null>(null);
 
   const getClosestSectionIndex = useCallback(() => {
     const container = containerRef.current;
@@ -36,16 +39,30 @@ export const usePaperScrollSync = ({
     const section = sectionRefs.current[index];
     if (!container || !section) return;
 
-    setActiveIndex(index);
     const targetTop =
       container.scrollTop +
       (section.getBoundingClientRect().top -
         container.getBoundingClientRect().top);
 
+    programmaticScrollRef.current = true;
+    targetScrollTopRef.current = targetTop;
+    setActiveIndex(index);
+
     container.scrollTo({
       top: targetTop,
       behavior: "smooth",
     });
+
+    if (clearProgrammaticScrollTimeoutRef.current) {
+      window.clearTimeout(clearProgrammaticScrollTimeoutRef.current);
+    }
+
+    const distance = Math.abs(container.scrollTop - targetTop);
+    const estimatedDuration = Math.min(700, Math.max(250, distance * 0.5));
+    clearProgrammaticScrollTimeoutRef.current = window.setTimeout(() => {
+      programmaticScrollRef.current = false;
+      targetScrollTopRef.current = null;
+    }, estimatedDuration + 100);
   };
 
   const handlePrev = () => {
@@ -62,6 +79,19 @@ export const usePaperScrollSync = ({
 
   useEffect(() => {
     const handleScroll = () => {
+      if (programmaticScrollRef.current) {
+        const container = containerRef.current;
+        const targetTop = targetScrollTopRef.current;
+        if (container && targetTop !== null) {
+          const isAtTarget = Math.abs(container.scrollTop - targetTop) <= 3;
+          if (isAtTarget) {
+            programmaticScrollRef.current = false;
+            targetScrollTopRef.current = null;
+          }
+        }
+        return;
+      }
+
       const newIndex = getClosestSectionIndex();
       setActiveIndex((prevIndex) =>
         prevIndex === newIndex ? prevIndex : newIndex,
@@ -76,6 +106,9 @@ export const usePaperScrollSync = ({
 
     return () => {
       if (container) container.removeEventListener("scroll", handleScroll);
+      if (clearProgrammaticScrollTimeoutRef.current) {
+        window.clearTimeout(clearProgrammaticScrollTimeoutRef.current);
+      }
     };
   }, [getClosestSectionIndex]);
 
