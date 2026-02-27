@@ -37,10 +37,10 @@ export const PaperHeader = ({
       </motion.h3>
       <PaginationButton
         onClick={onNext}
-        disabled={activeIndex === totalItems - 1}
+        disabled={totalItems === 0 || activeIndex >= totalItems - 1}
         imgSrc={RightArrow}
         altText="Next"
-      />
+      />      
     </div>
   );
 };

@@ -13,9 +13,6 @@ export const usePaperScrollSync = ({
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const isProgrammaticScroll = useRef(false);
-  const programmaticScrollTimeout = useRef<number | null>(null);
-
   const getClosestSectionIndex = useCallback(() => {
     const container = containerRef.current;
     if (!container) return 0;
@@ -31,24 +28,24 @@ export const usePaperScrollSync = ({
       }
     });
 
-    return closestIndex;
-  }, [activationThreshold]);
+    return Math.min(closestIndex, Math.max(totalItems - 1, 0));
+  }, [activationThreshold, totalItems]);
 
   const scrollToIndex = (index: number) => {
     const container = containerRef.current;
     const section = sectionRefs.current[index];
     if (!container || !section) return;
 
-    isProgrammaticScroll.current = true;
     setActiveIndex(index);
-    container.scrollTo({ top: section.offsetTop, behavior: "smooth" });
+    const targetTop =
+      container.scrollTop +
+      (section.getBoundingClientRect().top -
+        container.getBoundingClientRect().top);
 
-    if (programmaticScrollTimeout.current) {
-      window.clearTimeout(programmaticScrollTimeout.current);
-    }
-    programmaticScrollTimeout.current = window.setTimeout(() => {
-      isProgrammaticScroll.current = false;
-    }, 450);
+    container.scrollTo({
+      top: targetTop,
+      behavior: "smooth",
+    });
   };
 
   const handlePrev = () => {
@@ -65,7 +62,6 @@ export const usePaperScrollSync = ({
 
   useEffect(() => {
     const handleScroll = () => {
-      if (isProgrammaticScroll.current) return;
       const newIndex = getClosestSectionIndex();
       setActiveIndex((prevIndex) =>
         prevIndex === newIndex ? prevIndex : newIndex,
@@ -80,9 +76,6 @@ export const usePaperScrollSync = ({
 
     return () => {
       if (container) container.removeEventListener("scroll", handleScroll);
-      if (programmaticScrollTimeout.current) {
-        window.clearTimeout(programmaticScrollTimeout.current);
-      }
     };
   }, [getClosestSectionIndex]);
 

@@ -870,8 +870,7 @@ export const WhitePaperData = [
           0.00020625, so the payout is not 800x. {ir} is set to 0.01595, which
           is greater than 0.000825, so the payout is not 200x. {ir} is set to
           0.015125, which is greater than 0.004125, so the payout is not 40x.{" "}
-          {ir}
-          is set to 0.011, which is less than or equal to 0.011, so the payout
+          {ir} is set to 0.011, which is less than or equal to 0.011, so the payout
           is 15x.
         </p>
         <p>

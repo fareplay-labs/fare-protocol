@@ -24,7 +24,9 @@ export const PaperSections = ({
         <div
           key={idx}
           ref={(el) => {
-            sectionRefs.current[idx] = el;
+            if (sectionRefs.current) {
+              sectionRefs.current[idx] = el;
+            }
           }}
           className="paper-content"
         >

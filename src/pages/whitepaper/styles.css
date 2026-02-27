@@ -45,7 +45,6 @@
   text-align: justify;
   height: 60vh;
   overflow-y: scroll;
-  scroll-snap-type: y mandatory;
 
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE and Edge */
@@ -62,11 +61,10 @@
 }
 
 .paper-content {
-  min-height: 60vh;
+  min-height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  scroll-snap-align: start;
   padding: 0 24px;
 }
 
@@ -78,4 +76,3 @@
   width: inherit;
   max-width: 500px;
 }
-
