@@ -12,6 +12,8 @@ This app includes public-facing pages for protocol information, whitepaper conte
 - React Router
 - Framer Motion / Motion
 - Formik + Yup
+- Vercel Analytics
+- Vercel Speed Insights
 - ESLint
 
 ## Getting Started
@@ -67,6 +69,35 @@ src/
 ```bash
 pnpm build
 pnpm preview
+```
+
+## Observability
+
+Client-side analytics and performance monitoring are enabled in the app entrypoint:
+
+- `@vercel/analytics/react`
+- `@vercel/speed-insights/react`
+
+Both are mounted in `src/main.tsx`.
+
+## Deployment (Vercel)
+
+Preview deploy:
+
+```bash
+vercel deploy
+```
+
+Production deploy:
+
+```bash
+vercel --prod
+```
+
+If the local project is linked to the wrong Vercel account/project, remove `.vercel/` and run:
+
+```bash
+vercel link
 ```
 
 ## Contributing
