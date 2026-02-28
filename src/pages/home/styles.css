@@ -91,11 +91,9 @@
 }
 
 .external-link:hover {
-  filter: brightness(1.2);
   transform: translateY(-1px);
-  filter: invert(1);
+  filter: brightness(1.2) invert(1);
 }
-
 .sponsor-container {
   display: flex;
   flex-direction: column;
