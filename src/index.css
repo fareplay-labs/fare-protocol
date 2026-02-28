@@ -98,16 +98,13 @@ a {
   font-weight: 500;
   color: #fff;
   text-decoration: inherit;
-  transition:
-    color 0.3s,
-    filter 0.3s,
-    transform 0.3s;
+  transition: all 0.3s ease;
   display: inline-block;
 }
 
 a:hover {
-  filter: brightness(2) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.12));
-  transform: scale(1.05);
+  filter: brightness(1.2);
+  transform: translateY(-1px);
 }
 
 h1 {
@@ -127,10 +124,6 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
-
-/* button:hover {
-  border-color: transparent;
-} */
 
 button:focus,
 button:focus-visible {
