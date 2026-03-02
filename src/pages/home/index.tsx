@@ -66,7 +66,7 @@ export const HomePage = () => {
 
           {/* todo: add link to proper site here */}
           <a
-            href="https://ipfs.io/ipfs/bafybeiadjezydomrcl2t7r7w3au4copy3yenu6ferdonbhrz6q6dndj25m/#/fareVault?poolAccount=BqQ9fhDxit7r9gcVPmsCgudxTXeEcZS4yjNyRuqExbkx"
+            href="https://app.fareplay.io/ipfs/bafybeiadjezydomrcl2t7r7w3au4copy3yenu6ferdonbhrz6q6dndj25m/#/fareVault?poolAccount=BqQ9fhDxit7r9gcVPmsCgudxTXeEcZS4yjNyRuqExbkx"
             target="_blank"
             rel="noopener noreferrer"
             className="button__bordered"
