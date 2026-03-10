@@ -4,6 +4,7 @@ import "./styles.css";
 import FareProtocolLogo from "../../assets/svgs/FareProtocol.svg";
 import { Link } from "react-router-dom";
 // import { SponsorsCarousel } from "./carousel";
+import EthQRCode from "../../assets/svgs/eth_qr_code.svg";
 import SolanaQRCode from "../../assets/svgs/solana_qr_code.svg";
 import BitcoinQRCode from "../../assets/svgs/bitcoin_qr_code.svg";
 import CopyIcon from "../../assets/svgs/copy.svg";
@@ -228,6 +229,7 @@ export const HomePage = () => {
             Please consider donating crypto to help fund our project! We accept
             donations through the methods below.
           </h2>
+          <img src={EthQRCode} alt="ethereum address QR code" width={200} />
           <p>ETHEREUM (EVM): 0xfA8d2B861D6876318aB90E9084d92208Be9aD241</p>{" "}
           <img src={SolanaQRCode} alt="solana address QR code" width={200} />
           <p>SOLANA: 8GFqTSy3ErqB1wwo5WWvSy8NU1eEhdqDdwcnKCBjyAYY</p>
