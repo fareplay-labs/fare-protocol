@@ -115,7 +115,7 @@ export const HomePage = () => {
         </p>
 
         {copySuccessMessage ? (
-          <div className="ev-success" role="status" aria-live="polite">
+          <div className="green-text" role="status" aria-live="polite">
             {copySuccessMessage}
           </div>
         ) : null}
