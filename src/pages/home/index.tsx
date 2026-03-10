@@ -109,7 +109,14 @@ export const HomePage = () => {
               <li key={address.chain} className="contract-item">
                 <span>
                   {address.chain} ({address.decimals} Decimals):{" "}
-                  <span className="contract-value">{address.value}</span>
+                  <a
+                    href="https://solscan.io/token/FAREtaJuGTKUbyuadgUNQn45XnJCa6BoKCavPHxfyLTv"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="contract-value"
+                  >
+                    {address.value}
+                  </a>
                 </span>
                 <button
                   type="button"
