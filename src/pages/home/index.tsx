@@ -1,14 +1,18 @@
 import "./styles.css";
-// import DiscordIcon from "../../assets/svgs/Discord.svg";
-// import TwitterIcon from "../../assets/svgs/Twitter.svg";
 import FareProtocolLogo from "../../assets/svgs/FareProtocol.svg";
 import { Link } from "react-router-dom";
-// import { SponsorsCarousel } from "./carousel";
-import EthQRCode from "../../assets/svgs/eth_qr_code.svg";
-import SolanaQRCode from "../../assets/svgs/solana_qr_code.svg";
-import BitcoinQRCode from "../../assets/svgs/bitcoin_qr_code.svg";
 import CopyIcon from "../../assets/svgs/copy.svg";
 import { useEffect, useState } from "react";
+import {
+  CONTRACT_ADDRESSES,
+  DONATION_METHODS,
+  HOME_LINKS,
+} from "../../data/homeData";
+import { copyText } from "../../utils/clipboard";
+
+const COPY_SUCCESS_MESSAGE = "Address copied to clipboard.";
+const COPY_ERROR_MESSAGE = "Unable to copy address. Please copy it manually.";
+const FEEDBACK_TIMEOUT_MS = 1800;
 
 export const HomePage = () => {
   const [copySuccessMessage, setCopySuccessMessage] = useState<string | null>(
@@ -16,48 +20,15 @@ export const HomePage = () => {
   );
   const [copyErrorMessage, setCopyErrorMessage] = useState<string | null>(null);
 
-  const copyWithFallback = (value: string) => {
-    const textArea = document.createElement("textarea");
-    textArea.value = value;
-    textArea.setAttribute("readonly", "");
-    textArea.style.position = "absolute";
-    textArea.style.left = "-9999px";
-    document.body.appendChild(textArea);
-    textArea.select();
-
-    const didCopy = document.execCommand("copy");
-    document.body.removeChild(textArea);
-
-    return didCopy;
-  };
-
-  const copyToClipboard = async (value: string) => {
+  const onCopy = async (value: string) => {
     setCopySuccessMessage(null);
     setCopyErrorMessage(null);
 
-    try {
-      if (navigator.clipboard?.writeText) {
-        await navigator.clipboard.writeText(value);
-      } else {
-        const didCopy = copyWithFallback(value);
-        if (!didCopy) {
-          throw new Error("Clipboard API unavailable and fallback failed.");
-        }
-      }
-
-      setCopySuccessMessage("Address copied to clipboard.");
-    } catch {
-      try {
-        const didCopy = copyWithFallback(value);
-        if (didCopy) {
-          setCopySuccessMessage("Address copied to clipboard.");
-          return;
-        }
-      } catch {
-        // no-op
-      }
-
-      setCopyErrorMessage("Unable to copy address. Please copy it manually.");
+    const didCopy = await copyText(value);
+    if (didCopy) {
+      setCopySuccessMessage(COPY_SUCCESS_MESSAGE);
+    } else {
+      setCopyErrorMessage(COPY_ERROR_MESSAGE);
     }
   };
 
@@ -67,7 +38,7 @@ export const HomePage = () => {
     const timeoutId = window.setTimeout(() => {
       setCopySuccessMessage(null);
       setCopyErrorMessage(null);
-    }, 1800);
+    }, FEEDBACK_TIMEOUT_MS);
 
     return () => {
       window.clearTimeout(timeoutId);
@@ -83,29 +54,24 @@ export const HomePage = () => {
         <header className="home-hero">
           <img src={FareProtocolLogo} alt="Fare Protocol Logo" width={200} />
           <h1 id="home-title" className="sub-header">
-            DEPLOY PERMISSIONLESS + TRUSTLESS ON-CHAIN PROBABILITIES
-            CONTRACTS{" "}
+            DEPLOY PERMISSIONLESS + TRUSTLESS ON-CHAIN PROBABILITIES CONTRACTS
           </h1>
         </header>
 
-        <div className="home-token-link">
-          <a
-            href="https://jup.ag/swap?sell=So11111111111111111111111111111111111111112&buy=FAREtaJuGTKUbyuadgUNQn45XnJCa6BoKCavPHxfyLTv"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="teal-text"
-          >
-            BUY FARE TOKEN ON JUPITER
-          </a>
-
-          <a
-            href="https://app.uniswap.org/explore/tokens/arbitrum/0xfa4e888d9fbbcf4afa7bf057ecfe59ed04619e62?inputCurrency=NATIVE"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="teal-text"
-          >
-            BUY FARE ON UNISWAP
-          </a>
+        <div className="home-token-wrapper">
+          <p className="teal-text">BUY FARE TOKEN ON:</p>
+          <div className="home-token-link">
+            {HOME_LINKS.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={link.image} alt={link.label} width={40} />
+              </a>
+            ))}
+          </div>
         </div>
 
         <p className="text-warning" aria-label="Warning about scams">
@@ -114,15 +80,22 @@ export const HomePage = () => {
           wallet.
         </p>
 
-        {copySuccessMessage ? (
-          <div className="green-text" role="status" aria-live="polite">
-            {copySuccessMessage}
-          </div>
-        ) : null}
-
-        {copyErrorMessage ? (
-          <div className="text-warning" role="alert" aria-live="assertive">
-            {copyErrorMessage}
+        {copySuccessMessage || copyErrorMessage ? (
+          <div
+            className={`copy-feedback ${
+              copyErrorMessage
+                ? "copy-feedback--error"
+                : "copy-feedback--success"
+            }`}
+            role={copyErrorMessage ? "alert" : "status"}
+            aria-live={copyErrorMessage ? "assertive" : "polite"}
+          >
+            {copySuccessMessage ? (
+              <p className="green-text">{copySuccessMessage}</p>
+            ) : null}
+            {copyErrorMessage ? (
+              <p className="text-warning">{copyErrorMessage}</p>
+            ) : null}
           </div>
         ) : null}
 
@@ -131,54 +104,25 @@ export const HomePage = () => {
           aria-label="Contract addresses with copy to clipboard functionality"
         >
           <p>Contract Addresses:</p>
-          <p>
-            Solana (6 Decimals):{" "}
-            <span style={{ textDecoration: "underline" }}>
-              FAREtaJuGTKUbyuadgUNQn45XnJCa6BoKCavPHxfyLTv
-            </span>
-            <button
-              type="button"
-              onClick={() =>
-                copyToClipboard("FAREtaJuGTKUbyuadgUNQn45XnJCa6BoKCavPHxfyLTv")
-              }
-              title="Click to copy"
-              aria-label="Copy Solana contract address"
-              style={{
-                background: "none",
-                border: "none",
-                padding: 0,
-                marginLeft: "4px",
-                cursor: "pointer",
-                verticalAlign: "middle",
-              }}
-            >
-              <img src={CopyIcon} alt="copy icon" width={16} />
-            </button>
-          </p>
-          <p>
-            Arbitrum (18 Decimals):{" "}
-            <span style={{ textDecoration: "underline" }}>
-              0xFA4E888d9fBBcF4AfA7BF057ECfe59Ed04619e62
-            </span>
-            <button
-              type="button"
-              onClick={() =>
-                copyToClipboard("0xFA4E888d9fBBcF4AfA7BF057ECfe59Ed04619e62")
-              }
-              title="Click to copy"
-              aria-label="Copy Arbitrum contract address"
-              style={{
-                background: "none",
-                border: "none",
-                padding: 0,
-                marginLeft: "4px",
-                cursor: "pointer",
-                verticalAlign: "middle",
-              }}
-            >
-              <img src={CopyIcon} alt="copy icon" width={16} />
-            </button>
-          </p>
+          <ul className="contract-list">
+            {CONTRACT_ADDRESSES.map((address) => (
+              <li key={address.chain} className="contract-item">
+                <span>
+                  {address.chain} ({address.decimals} Decimals):{" "}
+                  <span className="contract-value">{address.value}</span>
+                </span>
+                <button
+                  type="button"
+                  onClick={() => onCopy(address.value)}
+                  title={`Copy ${address.chain} address`}
+                  aria-label={`Copy ${address.chain} contract address`}
+                  className="copy-button"
+                >
+                  <img src={CopyIcon} alt="" aria-hidden="true" width={16} />
+                </button>
+              </li>
+            ))}
+          </ul>
         </div>
 
         <p id="home-summary" className="home-copy">
@@ -204,7 +148,7 @@ export const HomePage = () => {
 
         <p className="home-copy">
           Envisaged use cases include applications in insurance, probabilistic
-          yield pools, non-custody casino games, forecasting, finance and
+          yield pools, non-custody wagering games, forecasting, finance and
           investing, AI and machine learning, polling, and many more. Developers
           can deploy their own Probability Pools on top of the FAREVault smart
           contract permissionlessly; this means anyone can develop novel use
@@ -229,50 +173,30 @@ export const HomePage = () => {
             Please consider donating crypto to help fund our project! We accept
             donations through the methods below.
           </h2>
-          <img src={EthQRCode} alt="ethereum address QR code" width={200} />
-          <p>ETHEREUM (EVM): 0xfA8d2B861D6876318aB90E9084d92208Be9aD241</p>{" "}
-          <img src={SolanaQRCode} alt="solana address QR code" width={200} />
-          <p>SOLANA: 8GFqTSy3ErqB1wwo5WWvSy8NU1eEhdqDdwcnKCBjyAYY</p>
-          <img src={BitcoinQRCode} alt="bitcoin address QR code" width={200} />
-          <p>BITCOIN: bc1qu9j8fczsuhph69c7q52wsjpll3kupu09gmrwxl</p>
-          {/* <a
-            href="https://app.fareplay.io/ipfs/bafybeibfjz3si44ux2ehpfeu2mrogehb4sekgtp7uc4h7hkjwiwmz6wbli/#/fareVault?poolAccount=BqQ9fhDxit7r9gcVPmsCgudxTXeEcZS4yjNyRuqExbkx"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="button__bordered"
-          >
-            launch
-          </a>
-
-          <nav className="external-link-wrapper" aria-label="FARE social links">
-            <ul className="external-link-list">
-              <li>
-                <a
-                  href="https://discord.com/invite/eUEwY3vS8R"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Join our Discord community"
-                  className="external-link"
+          {DONATION_METHODS.map((method) => (
+            <div key={method.network} className="donation-item">
+              <img
+                src={method.qrSrc}
+                alt={method.qrAlt}
+                className="donation-qr"
+              />
+              <p className="donation-address-row">
+                <span>
+                  {method.network}: {method.address}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => onCopy(method.address)}
+                  title={`Copy ${method.network} donation address`}
+                  aria-label={`Copy ${method.network} donation address`}
+                  className="copy-button"
                 >
-                  <img src={DiscordIcon} alt="Discord" width={40} />
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://x.com/fareplayio"
-                  aria-label="Follow us on Twitter"
-                  rel="noopener noreferrer"
-                  className="external-link"
-                  target="_blank"
-                >
-                  <img src={TwitterIcon} alt="Twitter" width={40} />
-                </a>
-              </li>
-            </ul>
-          </nav> */}
+                  <img src={CopyIcon} alt="" aria-hidden="true" width={16} />
+                </button>
+              </p>
+            </div>
+          ))}
         </section>
-
-        {/* <SponsorsCarousel /> */}
       </section>
     </main>
   );

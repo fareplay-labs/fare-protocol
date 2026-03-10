@@ -15,13 +15,18 @@
   gap: 1rem;
 }
 
-.home-token-link {
+.home-token-wrapper {
   font-size: clamp(1.1rem, 2vw, 1.5rem);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 12px;
+}
+
+.home-token-link {
+  display: flex;
+  gap: 32px;
+
 }
 
 .home-copy {
@@ -43,6 +48,65 @@
 
 .copy-address {
   text-align: center;
+}
+
+.copy-feedback {
+  position: fixed;
+  left: 1rem;
+  bottom: 1rem;
+  z-index: 1000;
+  max-width: min(92vw, 420px);
+  padding: 0.65rem 0.9rem;
+  border: 1px solid var(--fare-blue);
+  border-radius: 8px;
+  background: rgba(10, 10, 10, 0.92);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.35);
+}
+
+.copy-feedback p {
+  margin: 0;
+  text-align: left;
+}
+
+.copy-feedback--success {
+  border-color: var(--fare-green);
+}
+
+.copy-feedback--error {
+  border-color: var(--fare-red);
+}
+
+.contract-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.contract-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+}
+
+.contract-value {
+  word-break: break-all;
+}
+
+.copy-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.copy-button:focus-visible {
+  outline: 2px solid var(--fare-blue);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 .text-warning {
@@ -80,6 +144,31 @@
   margin: 0;
   font-size: 1rem;
   text-align: center;
+}
+
+.donation-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.donation-item p {
+  margin: 0;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.donation-address-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.donation-qr {
+  width: 200px;
+  max-width: 100%;
+  height: auto;
 }
 
 .external-link-wrapper {
@@ -142,5 +231,14 @@
   .cta-heading {
     text-align: left;
     width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .copy-feedback {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    max-width: none;
   }
 }
