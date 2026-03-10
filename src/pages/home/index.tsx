@@ -228,7 +228,6 @@ export const HomePage = () => {
             Please consider donating crypto to help fund our project! We accept
             donations through the methods below.
           </h2>
-          <p>ETHEREUM (EVM): 0xfA8d2B861D6876318aB90E9084d92208Be9aD241</p>{" "}
           <p>ETHREUM(EVM): 0xfA8d2B861D6876318aB90E9084d92208Be9aD241</p>
           <img src={SolanaQRCode} alt="solana address QR code" width={200} />
           <p>SOLANA: 8GFqTSy3ErqB1wwo5WWvSy8NU1eEhdqDdwcnKCBjyAYY</p>
