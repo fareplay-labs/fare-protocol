@@ -68,6 +68,8 @@
   font-size: 1.5rem;
   margin-block: 2rem;
   font-weight: 600;
+  text-align: center;
+  line-height: 1.2;
 }
 
 @media (max-width: 400px) {

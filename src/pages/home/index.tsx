@@ -1,11 +1,50 @@
 import "./styles.css";
-import DiscordIcon from "../../assets/svgs/Discord.svg";
-import TwitterIcon from "../../assets/svgs/Twitter.svg";
 import FareProtocolLogo from "../../assets/svgs/FareProtocol.svg";
 import { Link } from "react-router-dom";
-import { SponsorsCarousel } from "./carousel";
+import CopyIcon from "../../assets/svgs/copy.svg";
+import { useEffect, useState } from "react";
+import {
+  CONTRACT_ADDRESSES,
+  DONATION_METHODS,
+  HOME_LINKS,
+} from "../../data/homeData";
+import { copyText } from "../../utils/clipboard";
+
+const COPY_SUCCESS_MESSAGE = "Address copied to clipboard.";
+const COPY_ERROR_MESSAGE = "Unable to copy address. Please copy it manually.";
+const FEEDBACK_TIMEOUT_MS = 1800;
 
 export const HomePage = () => {
+  const [copySuccessMessage, setCopySuccessMessage] = useState<string | null>(
+    null,
+  );
+  const [copyErrorMessage, setCopyErrorMessage] = useState<string | null>(null);
+
+  const onCopy = async (value: string) => {
+    setCopySuccessMessage(null);
+    setCopyErrorMessage(null);
+
+    const didCopy = await copyText(value);
+    if (didCopy) {
+      setCopySuccessMessage(COPY_SUCCESS_MESSAGE);
+    } else {
+      setCopyErrorMessage(COPY_ERROR_MESSAGE);
+    }
+  };
+
+  useEffect(() => {
+    if (!copySuccessMessage && !copyErrorMessage) return;
+
+    const timeoutId = window.setTimeout(() => {
+      setCopySuccessMessage(null);
+      setCopyErrorMessage(null);
+    }, FEEDBACK_TIMEOUT_MS);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+    };
+  }, [copySuccessMessage, copyErrorMessage]);
+
   return (
     <main className="page-wrapper" aria-labelledby="home-title">
       <section
@@ -15,28 +54,92 @@ export const HomePage = () => {
         <header className="home-hero">
           <img src={FareProtocolLogo} alt="Fare Protocol Logo" width={200} />
           <h1 id="home-title" className="sub-header">
-            DEPLOY PERMISSIONLESS + TRUSTLESS ON-CHAIN CASINOS
+            DEPLOY PERMISSIONLESS + TRUSTLESS ON-CHAIN PROBABILITIES CONTRACTS
           </h1>
         </header>
 
-        <div className="home-token-link">
-          <a
-            href="https://jup.ag/swap?sell=So11111111111111111111111111111111111111112&buy=FAREtaJuGTKUbyuadgUNQn45XnJCa6BoKCavPHxfyLTv"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="teal-text"
+        <div className="home-token-wrapper">
+          <p className="teal-text">BUY FARE TOKEN ON:</p>
+          <div className="home-token-link">
+            {HOME_LINKS.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={link.image} alt={link.label} width={40} />
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <p className="text-warning" aria-label="Warning about scams">
+          Don&apos;t get scammed!! Make sure to use the correct Contract
+          Address. Copy the contract address below to add a custom token to your
+          wallet.
+        </p>
+
+        {copySuccessMessage || copyErrorMessage ? (
+          <div
+            className={`copy-feedback ${
+              copyErrorMessage
+                ? "copy-feedback--error"
+                : "copy-feedback--success"
+            }`}
+            role={copyErrorMessage ? "alert" : "status"}
+            aria-live={copyErrorMessage ? "assertive" : "polite"}
           >
-            BUY FARE TOKEN
-          </a>
+            {copySuccessMessage ? (
+              <p className="green-text">{copySuccessMessage}</p>
+            ) : null}
+            {copyErrorMessage ? (
+              <p className="text-warning">{copyErrorMessage}</p>
+            ) : null}
+          </div>
+        ) : null}
+
+        <div
+          className="copy-address"
+          aria-label="Contract addresses with copy to clipboard functionality"
+        >
+          <p>Contract Addresses:</p>
+          <ul className="contract-list">
+            {CONTRACT_ADDRESSES.map((address) => (
+              <li key={address.chain} className="contract-item">
+                <span>
+                  {address.chain} ({address.decimals} Decimals):{" "}
+                  <a
+                    href={address.to}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="contract-value"
+                  >
+                    {address.value}
+                  </a>
+                </span>
+                <button
+                  type="button"
+                  onClick={() => onCopy(address.value)}
+                  title={`Copy ${address.chain} address`}
+                  aria-label={`Copy ${address.chain} contract address`}
+                  className="copy-button"
+                >
+                  <img src={CopyIcon} alt="" aria-hidden="true" width={16} />
+                </button>
+              </li>
+            ))}
+          </ul>
         </div>
 
         <p id="home-summary" className="home-copy">
-          FARE is a token that users will be able to gamble with via the
-          FAREVault smart contract. When a user wagers FARE and loses, their
-          wagered FARE is burned. When a user wagers FARE and wins, their FARE
-          winnings are minted. The FAREVault smart contract ensures that there
-          is a negative expected value for users (commonly referred to as "house
-          edge" in casinos).
+          FARE is a token that facilitates decentralized random trials that
+          produce and consume resources, primarily the FARE token, via the
+          FAREVault smart contract. When a user submits a trial, FARE is burned
+          or minted according to the probability architecture of the underlying
+          FARE Pool. The FAREVault smart contract ensures that there is a
+          negative expected value (EV) for all Pools and therefore for all
+          users.
         </p>
 
         <p className="home-emphasis" aria-label="Burn is greater than mint">
@@ -45,15 +148,28 @@ export const HomePage = () => {
         </p>
 
         <p className="home-copy">
-          Because players lose more than they win, there is more burning than
-          minting. This means FARE will be a probabilistically deflationary
-          token, and as such, FARE holders are the "house." Developers can
-          deploy their own FARE casinos on top of the FAREVault smart contract
-          permissionlessly and without a bankroll. Read the{" "}
+          Because of the negative EV, there is more burning than minting. This
+          means FARE will be a probabilistically deflationary token, and as
+          such, FARE holders benefit from increased adoption of FARE Pools.
+        </p>
+
+        <p className="home-copy">
+          Envisaged use cases include applications in insurance, probabilistic
+          yield pools, non-custody wagering games, forecasting, finance and
+          investing, AI and machine learning, polling, and many more. Developers
+          can deploy their own Probability Pools on top of the FAREVault smart
+          contract permissionlessly; this means anyone can develop novel use
+          cases for a probability contract not yet considered. Read the{" "}
           <Link to="/whitepaper" className="teal-text">
             whitepaper
           </Link>{" "}
           to learn more.
+        </p>
+
+        <p className="home-copy">
+          The FARE Foundation is committed to promoting further adoption of the
+          FARE Protocol by developing more use cases. If you wish to contribute
+          or collaborate on our work please join our developer Discord!
         </p>
 
         <section
@@ -61,48 +177,33 @@ export const HomePage = () => {
           aria-labelledby="fareplay-heading"
         >
           <h2 id="fareplay-heading" className="cta-heading">
-            Experience the first application on testnet, Fareplay:
+            Please consider donating crypto to help fund our project! We accept
+            donations through the methods below.
           </h2>
-
-          {/* todo: add link to proper site here */}
-          <a
-            href="https://app.fareplay.io/ipfs/bafybeibfjz3si44ux2ehpfeu2mrogehb4sekgtp7uc4h7hkjwiwmz6wbli/#/fareVault?poolAccount=BqQ9fhDxit7r9gcVPmsCgudxTXeEcZS4yjNyRuqExbkx"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="button__bordered"
-          >
-            launch
-          </a>
-
-          <nav className="external-link-wrapper" aria-label="FARE social links">
-            <ul className="external-link-list">
-              <li>
-                <a
-                  href="https://discord.com/invite/eUEwY3vS8R"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Join our Discord community"
-                  className="external-link"
+          {DONATION_METHODS.map((method) => (
+            <div key={method.network} className="donation-item">
+              <img
+                src={method.qrSrc}
+                alt={method.qrAlt}
+                className="donation-qr"
+              />
+              <p className="donation-address-row">
+                <span>
+                  {method.network}: {method.address}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => onCopy(method.address)}
+                  title={`Copy ${method.network} donation address`}
+                  aria-label={`Copy ${method.network} donation address`}
+                  className="copy-button"
                 >
-                  <img src={DiscordIcon} alt="Discord" width={40} />
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://x.com/fareplayio"
-                  aria-label="Follow us on Twitter"
-                  rel="noopener noreferrer"
-                  className="external-link"
-                  target="_blank"
-                >
-                  <img src={TwitterIcon} alt="Twitter" width={40} />
-                </a>
-              </li>
-            </ul>
-          </nav>
+                  <img src={CopyIcon} alt="" aria-hidden="true" width={16} />
+                </button>
+              </p>
+            </div>
+          ))}
         </section>
-
-        <SponsorsCarousel />
       </section>
     </main>
   );
