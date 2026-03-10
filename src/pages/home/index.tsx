@@ -4,7 +4,6 @@ import "./styles.css";
 import FareProtocolLogo from "../../assets/svgs/FareProtocol.svg";
 import { Link } from "react-router-dom";
 // import { SponsorsCarousel } from "./carousel";
-import EthQRCode from "../../assets/svgs/eth_qr_code.svg";
 import SolanaQRCode from "../../assets/svgs/solana_qr_code.svg";
 import BitcoinQRCode from "../../assets/svgs/bitcoin_qr_code.svg";
 import CopyIcon from "../../assets/svgs/copy.svg";
@@ -14,23 +13,65 @@ export const HomePage = () => {
   const [copySuccessMessage, setCopySuccessMessage] = useState<string | null>(
     null,
   );
+  const [copyErrorMessage, setCopyErrorMessage] = useState<string | null>(null);
 
-  const copyToClipboard = (value: string) => {
-    navigator.clipboard.writeText(value);
-    setCopySuccessMessage("Address copied to clipboard.");
+  const copyWithFallback = (value: string) => {
+    const textArea = document.createElement("textarea");
+    textArea.value = value;
+    textArea.setAttribute("readonly", "");
+    textArea.style.position = "absolute";
+    textArea.style.left = "-9999px";
+    document.body.appendChild(textArea);
+    textArea.select();
+
+    const didCopy = document.execCommand("copy");
+    document.body.removeChild(textArea);
+
+    return didCopy;
+  };
+
+  const copyToClipboard = async (value: string) => {
+    setCopySuccessMessage(null);
+    setCopyErrorMessage(null);
+
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(value);
+      } else {
+        const didCopy = copyWithFallback(value);
+        if (!didCopy) {
+          throw new Error("Clipboard API unavailable and fallback failed.");
+        }
+      }
+
+      setCopySuccessMessage("Address copied to clipboard.");
+    } catch {
+      try {
+        const didCopy = copyWithFallback(value);
+        if (didCopy) {
+          setCopySuccessMessage("Address copied to clipboard.");
+          return;
+        }
+      } catch {
+        // no-op
+      }
+
+      setCopyErrorMessage("Unable to copy address. Please copy it manually.");
+    }
   };
 
   useEffect(() => {
-    if (!copySuccessMessage) return;
+    if (!copySuccessMessage && !copyErrorMessage) return;
 
     const timeoutId = window.setTimeout(() => {
       setCopySuccessMessage(null);
+      setCopyErrorMessage(null);
     }, 1800);
 
     return () => {
       window.clearTimeout(timeoutId);
     };
-  }, [copySuccessMessage]);
+  }, [copySuccessMessage, copyErrorMessage]);
 
   return (
     <main className="page-wrapper" aria-labelledby="home-title">
@@ -41,7 +82,8 @@ export const HomePage = () => {
         <header className="home-hero">
           <img src={FareProtocolLogo} alt="Fare Protocol Logo" width={200} />
           <h1 id="home-title" className="sub-header">
-            DEPLOY PERMISSIONLESS + TRUSTLESS ON-CHAIN PROBABILITES CONTRACTS
+            DEPLOY PERMISSIONLESS + TRUSTLESS ON-CHAIN PROBABILITIES
+            CONTRACTS{" "}
           </h1>
         </header>
 
@@ -72,8 +114,14 @@ export const HomePage = () => {
         </p>
 
         {copySuccessMessage ? (
-          <div className="green-text" role="status" aria-live="polite">
+          <div className="ev-success" role="status" aria-live="polite">
             {copySuccessMessage}
+          </div>
+        ) : null}
+
+        {copyErrorMessage ? (
+          <div className="text-warning" role="alert" aria-live="assertive">
+            {copyErrorMessage}
           </div>
         ) : null}
 
@@ -83,7 +131,7 @@ export const HomePage = () => {
         >
           <p>Contract Addresses:</p>
           <p>
-            SoLana (6 Decimals):{" "}
+            Solana (6 Decimals):{" "}
             <span style={{ textDecoration: "underline" }}>
               FAREtaJuGTKUbyuadgUNQn45XnJCa6BoKCavPHxfyLTv
             </span>
@@ -180,8 +228,7 @@ export const HomePage = () => {
             Please consider donating crypto to help fund our project! We accept
             donations through the methods below.
           </h2>
-
-          <img src={EthQRCode} alt="ethereum address QR code" width={200} />
+          <p>ETHEREUM (EVM): 0xfA8d2B861D6876318aB90E9084d92208Be9aD241</p>{" "}
           <p>ETHREUM(EVM): 0xfA8d2B861D6876318aB90E9084d92208Be9aD241</p>
           <img src={SolanaQRCode} alt="solana address QR code" width={200} />
           <p>SOLANA: 8GFqTSy3ErqB1wwo5WWvSy8NU1eEhdqDdwcnKCBjyAYY</p>
