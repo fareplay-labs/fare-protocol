@@ -8,6 +8,7 @@ export type ContractAddress = {
   chain: string;
   decimals: number;
   value: string;
+  to: string;
 };
 
 export type HomeLink = {
@@ -41,11 +42,13 @@ export const CONTRACT_ADDRESSES: ContractAddress[] = [
     chain: "Solana",
     decimals: 6,
     value: "FAREtaJuGTKUbyuadgUNQn45XnJCa6BoKCavPHxfyLTv",
+    to: "https://solscan.io/token/FAREtaJuGTKUbyuadgUNQn45XnJCa6BoKCavPHxfyLTv",
   },
   {
     chain: "Arbitrum",
     decimals: 18,
     value: "0xFA4E888d9fBBcF4AfA7BF057ECfe59Ed04619e62",
+    to: "https://arbiscan.io/address/0xFA4E888d9fBBcF4AfA7BF057ECfe59Ed04619e62",
   },
 ];
 

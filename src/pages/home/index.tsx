@@ -110,7 +110,7 @@ export const HomePage = () => {
                 <span>
                   {address.chain} ({address.decimals} Decimals):{" "}
                   <a
-                    href="https://solscan.io/token/FAREtaJuGTKUbyuadgUNQn45XnJCa6BoKCavPHxfyLTv"
+                    href={address.to}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="contract-value"
